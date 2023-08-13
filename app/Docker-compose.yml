@@ -1,0 +1,58 @@
+version: '3'
+services:
+  db:
+    build:
+      context: .
+      dockerfile: ./Docker/mysql/Dockerfile
+    ports:
+      - '3306:3306'
+    volumes:
+      - db_data:/var/lib/mysql
+    extends:
+      file: ./Docker/mysql/password.yml
+      service: password
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - db
+    ports:
+      - 3307:80
+    volumes:
+      - ./phpmyadmin/sessions:/sessions
+    extends:
+      file: ./Docker/phpmyadmin/myadmin_pass.yml
+      service: myadmin_pass
+
+  react-native:
+      build:
+        context: .
+        dockerfile: ./Docker/react/Dockerfile
+      volumes:
+        - ./Docker/react/:/usr/src/app
+      command: npm start
+
+      ports:
+        - "8081:8081"
+      environment:
+        TZ: Asia/Tokyo
+        REACT_NATIVE_PACKAGER_HOSTNAME: 192.168.1.28
+      tty: true
+      depends_on:
+        - maven-container
+
+  maven-container:
+    build:
+      context: .  # Dockerfileがあるディレクトリのパス
+      dockerfile: ./Docker/maven/Dockerfile  # 使用するDockerfileのファイル名
+    command: mvn spring-boot:run
+    volumes:
+      - .:/app  # ホストのプロジェクトディレクトリをコンテナの/appにマウント
+      - m2:/root/.m2
+    ports:
+      - "8080:8080"  # ホストの8080ポートとコンテナの8080ポートをマッピング
+
+volumes:
+  m2:
+    external: true
+  db_data:
