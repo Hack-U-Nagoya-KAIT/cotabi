@@ -33,3 +33,4 @@
 # .vscode/
 password.yml
 myadmin_pass.yml
+.env
