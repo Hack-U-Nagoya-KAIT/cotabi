@@ -34,3 +34,4 @@
 password.yml
 myadmin_pass.yml
 .env
+react-expo/node_modules
