@@ -27,7 +27,8 @@ public class dbService {
     private InsertImageRepo insertImageRepo;
     private TransportationRepo transportationRepo;
 
-    //登録
+    //登録メゾット一覧
+    //Companion Table create
     public boolean createCompanion(Companion companion) {
         try{
             companionRepo.save(companion);
@@ -37,6 +38,7 @@ public class dbService {
         }
     }
 
+    //CompanionSpot Table create
     public boolean createSpot(CompanionSpot companionSpot) {
         try{
             companionSpotRepo.save(companionSpot);
@@ -46,6 +48,7 @@ public class dbService {
         }
     }
 
+    //CompanionStamp Table create
     public boolean createStamp(CompanionStamp companionStamp) {
         try{
             companionStampRepo.save(companionStamp);
@@ -55,6 +58,7 @@ public class dbService {
         }
     }
 
+    //InsertImage Table create
     public boolean createImg(InsertImage insertImage) {
         try{
             insertImageRepo.save(insertImage);
@@ -64,6 +68,7 @@ public class dbService {
         }
     }
 
+    //Transportation Table create
         public boolean createTransportation(Transportation transportation) {
         try{
             transportationRepo.save(transportation);
@@ -73,12 +78,8 @@ public class dbService {
         }
     }
 
-    //更新
-    public Companion getCompanionById(UUID companion_id,){
-        return companionRepo.findBy(companion_id).orElse(null);
-    }
-
-    //削除
+    //削除メゾット一覧
+    //Companion Table delete(引数は主キー)
     public boolean deleteCompanion(UUID companion_id) {
         Companion existingcCompanion = companionRepo.findById(companion_id).orElse(null);
         if(existingcCompanion == null) return false;
@@ -87,27 +88,43 @@ public class dbService {
             return true;
         }
     }
-        public boolean deleteCompanionSpot(UUID spot_id) {
-        Companion existingcCompanionSpot = companionRepo.findById(spot_id).orElse(null);
+
+    //CompanionSpot Table delete(引数は主キー)
+    public boolean deleteCompanionSpot(UUID spot_id) {
+        CompanionSpot existingcCompanionSpot = companionSpotRepo.findById(spot_id).orElse(null);
         if(existingcCompanionSpot == null) return false;
         else{
-            companionRepo.delete(existingcCompanionSpot);
+            companionSpotRepo.delete(existingcCompanionSpot);
             return true;
         }
     }
-        public boolean deleteInsertImage(UUID stamp_id) {
-        Companion existingcCompanionStamp = companionRepo.findById(stamp_id).orElse(null);
+
+    //CompanionStamp Table delete(引数は主キー)
+    public boolean deleteCompanionStamp(UUID stamp_id) {
+        CompanionStamp existingcCompanionStamp = companionStampRepo.findById(stamp_id).orElse(null);
         if(existingcCompanionStamp == null) return false;
         else{
-            companionRepo.delete(existingcCompanionStamp);
+            companionStampRepo.delete(existingcCompanionStamp);
             return true;
         }
     }
-        public boolean deleteCompanionStamp(UUID stamp_id) {
-        Companion existingcCompanionStamp = companionRepo.findById(stamp_id).orElse(null);
-        if(existingcCompanionStamp == null) return false;
+
+    //InsertStamp Table delete(引数は主キー)
+    public boolean deleteInsertStamp(UUID img_id) {
+        InsertImage existinginsertImage = insertImageRepo.findById(img_id).orElse(null);
+        if(existinginsertImage == null) return false;
         else{
-            companionRepo.delete(existingcCompanionStamp);
+            insertImageRepo.delete(existinginsertImage);
+            return true;
+        }
+    }
+
+    //Transportation Table delete(引数は主キー)
+        public boolean deleteTransportation(UUID trans_id) {
+        Transportation existingcTransportation = transportationRepo.findById(trans_id).orElse(null);
+        if(existingcTransportation == null) return false;
+        else{
+            transportationRepo.delete(existingcTransportation);
             return true;
         }
     }

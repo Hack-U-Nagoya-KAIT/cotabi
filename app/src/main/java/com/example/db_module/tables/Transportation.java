@@ -1,6 +1,6 @@
 package com.example.db_module.tables;
 
-import java.time.LocalDateTime;
+
 import java.util.UUID;
 
 import javax.persistence.JoinColumn;
@@ -24,12 +24,9 @@ public class Transportation {
 
     @NotNull
     private String transportation_name;
-    @NotNull
-    private LocalDateTime eventDateTime;
-    @NotNull
-    private LocalDateTime departure_time;
-    @NotNull
-    private LocalDateTime arrival_time;
+    private String eventDateTime;
+    private String departure_time;
+    private String arrival_time;
     @NotNull
     private String departure_place;
     @NotNull
@@ -45,13 +42,13 @@ public class Transportation {
     public String getTransportation_name() {
         return transportation_name;
     }
-    public LocalDateTime getEventDateTime() {
+    public String getEventDateTime() {
         return eventDateTime;
     }
-    public LocalDateTime getDeparture_time() {
+    public String getDeparture_time() {
         return departure_time;
     }
-    public LocalDateTime getArrival_time() {
+    public String getArrival_time() {
         return arrival_time;
     }
     public String getDeparture_place() {
@@ -72,13 +69,13 @@ public class Transportation {
     public void setTransportation_name(String transportation_name) {
         this.transportation_name = transportation_name;
     }
-    public void setEventDateTime(LocalDateTime eventDateTime) {
+    public void setEventDateTime(String eventDateTime) {
         this.eventDateTime = eventDateTime;
     }
-    public void setDeparture_time(LocalDateTime departure_time) {
+    public void setDeparture_time(String departure_time) {
         this.departure_time = departure_time;
     }
-    public void setArrival_time(LocalDateTime arrival_time) {
+    public void setArrival_time(String arrival_time) {
         this.arrival_time = arrival_time;
     }
     public void setDeparture_place(String departure_place) {
