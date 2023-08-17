@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "axios": "^1.4.0",
     "expo": "~49.0.7",
     "expo-status-bar": "~1.6.0",
     "react": "18.2.0",
@@ -17,8 +18,5 @@
   "devDependencies": {
     "@babel/core": "^7.20.0"
   },
-  "proxy": " https://aa5d-2400-4051-cfe0-6600-3568-209e-6b99-456a.ngrok-free.app"
-  ,
   "private": true
-
 }
