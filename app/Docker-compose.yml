@@ -24,22 +24,22 @@ services:
       file: ./Docker/phpmyadmin/myadmin_pass.yml
       service: myadmin_pass
 
-  react-native:
-      build:
-        context: .
-        dockerfile: ./Docker/react/Dockerfile
-      env_file: ./Docker/react/.env
-      volumes:
-        - ./Docker/react/:/usr/src/app
-      command: npm start
+  # react-native:
+  #     build:
+  #       context: .
+  #       dockerfile: ./Docker/react/Dockerfile
+  #     env_file: ./Docker/react/.env
+  #     volumes:
+  #       - ./Docker/react/:/usr/src/app
+  #     command: npm start
 
-      ports:
-        - "8081:8081"
-      environment:
-        TZ: Asia/Tokyo
-      tty: true
-      depends_on:
-        - maven-container
+  #     ports:
+  #       - "8081:8081"
+  #     environment:
+  #       TZ: Asia/Tokyo
+  #     tty: true
+  #     depends_on:
+  #       - maven-container
 
   maven-container:
     build:
