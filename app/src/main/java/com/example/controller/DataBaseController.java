@@ -55,6 +55,7 @@ public class DataBaseController {
 
     //しおりスタンプの格納メゾット
     //戻り値 boolean型true/false
+    @PostMapping("/create/stamp")
     public boolean createStamp(@RequestBody CreateCompanionStampRequest companionStampRequest) {
         return service.createStamp(companionStampRequest.getCompanion_id() , companionStampRequest.getCompanionStamp());
     }
@@ -75,6 +76,7 @@ public class DataBaseController {
 
     //しおり画像の格納メゾット
     //戻り値 boolean型true/false
+    @PostMapping("/create/img")
     public boolean createImg(@RequestBody CreateInsertImageRequest createInsertImageRequest) {
         return service.createImg(createInsertImageRequest.getCompanion_id(), createInsertImageRequest.getImage());
     }
