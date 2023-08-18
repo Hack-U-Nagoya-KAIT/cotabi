@@ -16,16 +16,28 @@ import com.example.db_module.tables.CompanionStamp;
 import com.example.db_module.tables.InsertImage;
 import com.example.db_module.tables.Transportation;
 
-
 @Service
 public class dbService {
 
-    @Autowired
+    //コンストラクタインジェクション
     private CompanionRepo companionRepo;
     private CompanionSpotRepo companionSpotRepo;
     private CompanionStampRepo companionStampRepo;
     private InsertImageRepo insertImageRepo;
     private TransportationRepo transportationRepo;
+
+    @Autowired
+    public dbService(CompanionRepo companionRepo,CompanionSpotRepo companionSpotRepo
+        ,CompanionStampRepo companionStampRepo,InsertImageRepo insertImageRepo
+        ,TransportationRepo transportationRepo) {
+
+        this.companionRepo = companionRepo;
+        this.companionSpotRepo = companionSpotRepo;
+        this.companionStampRepo = companionStampRepo;
+        this.insertImageRepo = insertImageRepo;
+        this.transportationRepo = transportationRepo;
+    }
+
 
     //登録メゾット一覧
     //Companion Table create
@@ -39,7 +51,9 @@ public class dbService {
     }
 
     //CompanionSpot Table create
-    public boolean createSpot(CompanionSpot companionSpot) {
+    public boolean createSpot(UUID companion_id , CompanionSpot companionSpot) {
+        Companion companion = companionRepo.findById(companion_id).orElse(null);
+        companionSpot.setCompanion_id(companion);
         try{
             companionSpotRepo.save(companionSpot);
             return true;
@@ -49,7 +63,9 @@ public class dbService {
     }
 
     //CompanionStamp Table create
-    public boolean createStamp(CompanionStamp companionStamp) {
+    public boolean createStamp(UUID companion_id , CompanionStamp companionStamp) {
+        Companion companion = companionRepo.findById(companion_id).orElse(null);
+        companionStamp.setCompanion_id(companion);
         try{
             companionStampRepo.save(companionStamp);
             return true;
@@ -59,7 +75,9 @@ public class dbService {
     }
 
     //InsertImage Table create
-    public boolean createImg(InsertImage insertImage) {
+    public boolean createImg(UUID companion_id , InsertImage insertImage) {
+        Companion companion = companionRepo.findById(companion_id).orElse(null);
+        insertImage.setCompanion_id(companion);
         try{
             insertImageRepo.save(insertImage);
             return true;
@@ -69,7 +87,9 @@ public class dbService {
     }
 
     //Transportation Table create
-        public boolean createTransportation(Transportation transportation) {
+    public boolean createTransportation(UUID companion_id , Transportation transportation) {
+        Companion companion = companionRepo.findById(companion_id).orElse(null);
+        transportation.setCompanion_id(companion);
         try{
             transportationRepo.save(transportation);
             return true;
@@ -129,5 +149,13 @@ public class dbService {
         }
     }
 
+    //読み取りメゾット一覧(引数はcompanion_id)
+
+    public Companion readCompanion(UUID companion_id) {
+        Companion companion = companionRepo.findById(companion_id).orElse(null);
+        return companion;
+    }
+
+    //更新メゾット一覧(引数はcompanion_id)
 
 }
