@@ -10,7 +10,7 @@ export default function App() {
     const fetchData = async () => {
       try {
         //axios.getの後かっこの中身を毎回変更する
-        const response = await axios.get('https://8a1f-2400-4051-cfe0-6600-3568-209e-6b99-456a.ngrok-free.app/api/data');
+        const response = await axios.get('https://c1cb-157-250-240-248.ngrok-free.app/api/data');
         setData(response.data);
       } catch (error) {
         console.error(error);
