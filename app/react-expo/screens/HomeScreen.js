@@ -11,8 +11,9 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View>
       <Text>ホーム画面</Text>
-      <Button title="ユーザ" onPress={() => navigation.navigate('User',{userId: 1,})}/>
+      <Button title="ホーム" onPress={() => navigation.navigate('User',{userId: 1,})}/>
     </View>
+    
   );
 };
 
