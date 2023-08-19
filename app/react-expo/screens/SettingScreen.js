@@ -1,18 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Text, View } from 'react-native';
 
-const UserScreen = () => {
-  useEffect(() =>{
-    console.log('User Mount');
-    return () => {
-      console.log('User Unmount');
-    };
-  },[]);
+const SettingScreen = () => {
   return (
     <View>
-      <Text>ユーザ画面</Text>
+      <Text>設定画面</Text>
     </View>
   );
 };
 
-export default UserScreen;
+export default SetteingScreen;
