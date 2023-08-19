@@ -4,21 +4,29 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import HomeScreen from './screens/HomeScreen';
 import UserScreen from './screens/UserScreen';
+import GeolocationScreen from './screens/geolocation';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home'>{/* アプリ起動最初の画面設定 */}
+      <Stack.Navigator initialRouteName='geo'>{/* アプリ起動最初の画面設定 */}
         <Stack.Screen
         name="Home"
         component={HomeScreen}
-        options={{title: 'ホーム画面'}} />
+        options={{title: 'ホーム画面'}}
+        />
         <Stack.Screen
         name="User"
         component={UserScreen}
-        options={{title: 'ユーザ画面',headerShown: true}} />
+        options={{title: 'ユーザ画面',headerShown: true}}
+        />
+        <Stack.Screen
+        name="geo"
+        component={GeolocationScreen}
+        options={{title:'現在地取得画面'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
