@@ -22,13 +22,13 @@ public class Yolp {
         );
 
         ResponseEntity<String> response_3 = restTemplate.getForEntity(
-            baseUrl + "?appid=" + apiKey + "&device=mobile&lat="+latitude+"&lon="+longitude+"&dist=10&results=20&sort=geo&detail=string&gc=0302003",
+            baseUrl + "?appid=" + apiKey + "&device=mobile&lat="+latitude+"&lon="+longitude+"&dist=10&results=20&sort=geo&detail=string&gc=0303",
             //"&dist=10&results=20&sort=geo&detail=string&gc=0204001&gc=0302003&gc=0303&gc=0305"
             String.class
         );
 
         ResponseEntity<String> response_4 = restTemplate.getForEntity(
-            baseUrl + "?appid=" + apiKey + "&device=mobile&lat="+latitude+"&lon="+longitude+"&dist=10&results=20&sort=geo&detail=string&gc=0204001",
+            baseUrl + "?appid=" + apiKey + "&device=mobile&lat="+latitude+"&lon="+longitude+"&dist=10&results=20&sort=geo&detail=string&gc=0305",
             //"&dist=10&results=20&sort=geo&detail=string&gc=0204001&gc=0302003&gc=0303&gc=0305"
             String.class
         );
