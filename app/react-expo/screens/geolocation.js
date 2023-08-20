@@ -17,7 +17,7 @@ function GeolocationScreen() {
         setLocation(location);
 
         try {
-            const response = await axios.post('https://eebb-2400-4051-cfe0-6600-896c-7086-43a4-5e07.ngrok-free.app/api/location', {
+            const response = await axios.post('https://190d-2400-4051-cfe0-6600-a5f4-16a3-4e0b-290a.ngrok-free.app/api/location', {
                 latitude: location.coords.latitude,
                 longitude: location.coords.longitude
             });
