@@ -1,4 +1,5 @@
 /app/src/main/java/com/example/app/AppApplication.java
+<<<<<<< HEAD
 /app/src/main/java/com/example/app/db_module/db_interface/InsertImageRepo.java
 /app/src/main/java/com/example/app/db_module/db_interface/TransportationRepo.java
 /app/src/main/java/com/example/app/db_module/db_interface/CompanionStampRepo.java
@@ -12,3 +13,8 @@
 /app/src/main/java/com/example/app/db_module/db_interface/CompanionSpotRepo.java
 /app/src/main/java/com/example/app/db_module/tables/Transportation.java
 /app/src/main/java/com/example/app/db_module/tables/CompanionSpot.java
+=======
+/app/src/main/java/com/example/app/controller/Yolp.java
+/app/src/main/java/com/example/app/model/LocationRequest.java
+/app/src/main/java/com/example/app/controller/LocationController.java
+>>>>>>> 89e0b6c (gps_yolp応答)
