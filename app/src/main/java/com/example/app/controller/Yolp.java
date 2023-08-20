@@ -37,9 +37,9 @@ public class Yolp {
         System.out.println(response1Body);
         String response2Body = response_2.getBody();
         System.out.println(response2Body);
-        String response3Body = response_1.getBody();
+        String response3Body = response_3.getBody();
         System.out.println(response3Body);
-        String response4Body = response_2.getBody();
+        String response4Body = response_4.getBody();
         System.out.println(response4Body);
         return response1Body+response2Body+response3Body+response4Body;
     }
