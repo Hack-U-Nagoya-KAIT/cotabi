@@ -9,4 +9,4 @@ const SettingScreen = () => {
   );
 };
 
-export default SetteingScreen;
+export default SettingScreen;

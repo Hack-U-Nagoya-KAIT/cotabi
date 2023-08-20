@@ -2,7 +2,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import HistoryScreen from './screens/HistoryScreen';
 import HomeScreen from './screens/HomeScreen';
+import SettingScreen from './screens/SettingScreen';
 import UserScreen from './screens/UserScreen';
 
 const Stack = createNativeStackNavigator();
@@ -19,6 +21,14 @@ export default function App() {
         name="User"
         component={UserScreen}
         options={{title: 'ユーザ画面',headerShown: true}} />
+        <Stack.Screen
+        name="History"
+        component={HistoryScreen}
+        options={{ title: '履歴画面', headerShown: true }} />
+        <Stack.Screen
+        name="Setting"
+        component={SettingScreen}
+        options={{ title: '設定画面', headerShown: true }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

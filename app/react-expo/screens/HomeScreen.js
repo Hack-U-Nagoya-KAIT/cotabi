@@ -1,21 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Button, Text, View } from 'react-native';
 
 const HomeScreen = ({ navigation }) => {
-  useEffect(() => {
-    console.log('Home Mount');
-    return () => {
-      console.log('Home Unmount');
-    };
-  }, []);
   return (
     <View>
       <Text>ホーム画面</Text>
-      <Button title="ホーム" onPress={() => navigation.navigate('User',{userId: 1,})}/>
+      <Button title="ユーザ画面" onPress={() => navigation.navigate('User')} />
+      <Button title="履歴画面" onPress={() => navigation.navigate('History')} />
+      <Button title="設定画面" onPress={() => navigation.navigate('Setting')} />
     </View>
-    
   );
 };
-
 
 export default HomeScreen;
