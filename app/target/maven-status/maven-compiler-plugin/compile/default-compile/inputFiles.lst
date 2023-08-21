@@ -1,2 +1,14 @@
 /app/src/main/java/com/example/app/AppApplication.java
-/app/src/main/java/com/example/controller/DataController.java
+/app/src/main/java/com/example/app/db_module/db_interface/InsertImageRepo.java
+/app/src/main/java/com/example/app/db_module/db_interface/TransportationRepo.java
+/app/src/main/java/com/example/app/db_module/db_interface/CompanionStampRepo.java
+/app/src/main/java/com/example/app/controller/DataController.java
+/app/src/main/java/com/example/app/db_module/tables/InsertImage.java
+/app/src/main/java/com/example/app/db_module/dbService.java
+/app/src/main/java/com/example/app/db_module/tables/CompanionStamp.java
+/app/src/main/java/com/example/app/db_module/tables/Companion.java
+/app/src/main/java/com/example/app/controller/DataBaseController.java
+/app/src/main/java/com/example/app/db_module/db_interface/CompanionRepo.java
+/app/src/main/java/com/example/app/db_module/db_interface/CompanionSpotRepo.java
+/app/src/main/java/com/example/app/db_module/tables/Transportation.java
+/app/src/main/java/com/example/app/db_module/tables/CompanionSpot.java
