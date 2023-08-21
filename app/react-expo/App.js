@@ -4,12 +4,13 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import HistoryScreen from './screens/HistoryScreen';
 import HomeScreen from './screens/HomeScreen';
+import PromptScreen from './screens/PromptScreen';
 import SettingScreen from './screens/SettingScreen';
 import UserScreen from './screens/UserScreen';
 
 const Stack = createNativeStackNavigator();
 
-export default function App() {
+export default function App() {//画面遷移管理
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home'>{/* アプリ起動最初の画面設定 */}
@@ -22,6 +23,10 @@ export default function App() {
         component={UserScreen}
         options={{title: 'ユーザ画面',headerShown: true}} />
         <Stack.Screen
+        name="Prompt" // スクリーンの名前を指定
+        component={PromptScreen} // PromptScreen コンポーネントを指定
+        options={{ title: 'プロンプト入力画面', headerShown: true }}/>
+        <Stack.Screen
         name="History"
         component={HistoryScreen}
         options={{ title: '履歴画面', headerShown: true }} />
@@ -29,6 +34,7 @@ export default function App() {
         name="Setting"
         component={SettingScreen}
         options={{ title: '設定画面', headerShown: true }} />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );
