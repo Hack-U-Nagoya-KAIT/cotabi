@@ -1,5 +1,7 @@
 package com.example.app.db_module.tables;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,43 +16,51 @@ public class CompanionStamp {
 
     //column list
     @Id
-    @Column(name = "companion_stamp" , nullable = false , unique = true)
+    @Column(name = "companionStamp" , nullable = false , unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long companion_stamp;
+    private Long companionStamp;
 
     @ManyToOne
-    @JoinColumn(name = "companion_id" , nullable = false)
-    private Companion companion_id;
+    @JoinColumn(name = "companionId")
+    @JsonBackReference
+    private Companion companion;
 
-    @Column(name = "stamp_lon" , nullable = false)
-    private float stamp_lon;
+    @Column(name = "stampLon" , nullable = false)
+    private float stampLon;
 
-    @Column(name = "stamp_lat" , nullable = false)
-    private float stamp_lat;
+    @Column(name = "stampLat" , nullable = false)
+    private float stampLat;
 
     //getter,setter
-    public Long getCompanion_stamp() {
-        return companion_stamp;
+    public Long getCompanionStamp() {
+        return companionStamp;
     }
-    public Companion getCompanion_id() {
-        return companion_id;
+
+    public void setCompanionStamp(Long companionStamp) {
+        this.companionStamp = companionStamp;
     }
-    public float getStamp_lon() {
-        return stamp_lon;
+
+    public Companion getCompanion() {
+        return companion;
     }
-    public float getStamp_lat() {
-        return stamp_lat;
+
+    public void setCompanion(Companion companion) {
+        this.companion = companion;
     }
-    public void setCompanion_stamp(Long companion_stamp) {
-        this.companion_stamp = companion_stamp;
+
+    public float getStampLon() {
+        return stampLon;
     }
-    public void setCompanion_id(Companion companion_id) {
-        this.companion_id = companion_id;
+
+    public void setStampLon(float stampLon) {
+        this.stampLon = stampLon;
     }
-    public void setStamp_lon(float stamp_lon) {
-        this.stamp_lon = stamp_lon;
+
+    public float getStampLat() {
+        return stampLat;
     }
-    public void setStamp_lat(float stamp_lat) {
-        this.stamp_lat = stamp_lat;
+
+    public void setStampLat(float stampLat) {
+        this.stampLat = stampLat;
     }
 }

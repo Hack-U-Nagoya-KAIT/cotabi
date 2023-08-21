@@ -1,5 +1,7 @@
 package com.example.app.db_module;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,8 +39,8 @@ public class dbService {
     }
 
 
-    //登録メゾット一覧
-    //Companion Table create
+    //追加メゾット一覧
+    //Companion Table
     public boolean createCompanion(Companion companion) {
         try{
             companionRepo.save(companion);
@@ -48,10 +50,8 @@ public class dbService {
         }
     }
 
-    //CompanionSpot Table create
-    public boolean createSpot(Long companion_id , CompanionSpot companionSpot) {
-        Companion companion = companionRepo.findById(companion_id).orElse(null);
-        companionSpot.setCompanion_id(companion);
+    //CompanionSpot Table
+    public boolean createSpot(CompanionSpot companionSpot) {
         try{
             companionSpotRepo.save(companionSpot);
             return true;
@@ -60,10 +60,8 @@ public class dbService {
         }
     }
 
-    //CompanionStamp Table create
-    public boolean createStamp(Long companion_id , CompanionStamp companionStamp) {
-        Companion companion = companionRepo.findById(companion_id).orElse(null);
-        companionStamp.setCompanion_id(companion);
+    //CompanionStamp Table
+    public boolean createStamp(CompanionStamp companionStamp) {
         try{
             companionStampRepo.save(companionStamp);
             return true;
@@ -72,10 +70,8 @@ public class dbService {
         }
     }
 
-    //InsertImage Table create
-    public boolean createImg(Long companion_id , InsertImage insertImage) {
-        Companion companion = companionRepo.findById(companion_id).orElse(null);
-        insertImage.setCompanion_id(companion);
+    //InsertImage Table
+    public boolean createImg(InsertImage insertImage) {
         try{
             insertImageRepo.save(insertImage);
             return true;
@@ -84,10 +80,8 @@ public class dbService {
         }
     }
 
-    //Transportation Table create
-    public boolean createTransportation(Long companion_id , Transportation transportation) {
-        Companion companion = companionRepo.findById(companion_id).orElse(null);
-        transportation.setCompanion_id(companion);
+    //Transportation Table
+    public boolean createTransportation(Transportation transportation) {
         try{
             transportationRepo.save(transportation);
             return true;
@@ -96,8 +90,8 @@ public class dbService {
         }
     }
 
-    //削除メゾット一覧
-    //Companion Table delete(引数は主キー)
+    //削除メゾット一覧(引数は主キー)
+    //Companion Table
     public boolean deleteCompanion(Long companion_id) {
         Companion existingcCompanion = companionRepo.findById(companion_id).orElse(null);
         if(existingcCompanion == null) return false;
@@ -107,7 +101,7 @@ public class dbService {
         }
     }
 
-    //CompanionSpot Table delete(引数は主キー)
+    //CompanionSpot Table
     public boolean deleteCompanionSpot(Long spot_id) {
         CompanionSpot existingcCompanionSpot = companionSpotRepo.findById(spot_id).orElse(null);
         if(existingcCompanionSpot == null) return false;
@@ -117,7 +111,7 @@ public class dbService {
         }
     }
 
-    //CompanionStamp Table delete(引数は主キー)
+    //CompanionStamp Table
     public boolean deleteCompanionStamp(Long stamp_id) {
         CompanionStamp existingcCompanionStamp = companionStampRepo.findById(stamp_id).orElse(null);
         if(existingcCompanionStamp == null) return false;
@@ -127,7 +121,7 @@ public class dbService {
         }
     }
 
-    //InsertStamp Table delete(引数は主キー)
+    //InsertStamp Table
     public boolean deleteInsertStamp(Long img_id) {
         InsertImage existinginsertImage = insertImageRepo.findById(img_id).orElse(null);
         if(existinginsertImage == null) return false;
@@ -137,7 +131,7 @@ public class dbService {
         }
     }
 
-    //Transportation Table delete(引数は主キー)
+    //Transportation Table
         public boolean deleteTransportation(Long trans_id) {
         Transportation existingcTransportation = transportationRepo.findById(trans_id).orElse(null);
         if(existingcTransportation == null) return false;
@@ -147,11 +141,31 @@ public class dbService {
         }
     }
 
-    //読み取りメゾット一覧(引数はcompanion_id)
+    //取得メゾット一覧
+    //Find by companionId
+    //Companion table
+    public Companion readCompanions(Long companionId) {
+        return companionRepo.findById(companionId).orElse(null);
+    }
 
-    public Companion readCompanion(Long companion_id) {
-        Companion companion = companionRepo.findById(companion_id).orElse(null);
-        return companion;
+    //CompanionStop table
+    public List<CompanionSpot> readCompanionSpots(Long companionId) {
+        return companionSpotRepo.findByCompanion_CompanionId(companionId);
+    }
+
+    //CompanionStamp table
+    public List<CompanionStamp> readCompanionStamps(Long companionId) {
+        return companionStampRepo.findByCompanion_CompanionId(companionId);
+    }
+
+    //InsertImage table
+    public List<InsertImage> readInsertImages(Long companionId) {
+        return insertImageRepo.findByCompanion_CompanionId(companionId);
+    }
+
+    //Transportation table
+    public List<Transportation> readTransportations(Long companionId) {
+        return transportationRepo.findByCompanion_CompanionId(companionId);
     }
 
     //更新メゾット一覧(引数はcompanion_id)

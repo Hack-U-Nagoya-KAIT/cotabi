@@ -1,6 +1,10 @@
 package com.example.app.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +20,7 @@ import com.example.app.db_module.tables.Transportation;
 
 //This is database controller.
 @RestController
-@RequestMapping("/api/test")
+@RequestMapping("/api/db")
 public class DataBaseController {
     private dbService service;
 
@@ -25,98 +29,75 @@ public class DataBaseController {
         this.service = service;
     }
 
-    @RequestMapping("/db")  // 追加
-	public String pp() { // 追加
-		return "Hello World"; // 追加
-	} // 追加
-
-    //しおり格納メゾット
+    //CREATE NEW DATA FOR Companion TABLE
     //戻り値 boolean型true/false
     @PostMapping("/create/comp")
     public boolean createcomp(@RequestBody Companion companion) {
         return service.createCompanion(companion);
     }
 
-    //しおりスポットの格納メゾット
+    //CREATE NEW DATA FOR Companion_Spot TABLE
     //戻り値 boolean型true/false
     @PostMapping("/create/spot")
-    public boolean createSpot(@RequestBody CreateCompanionSpotRequest createcCompanionSpotRequest) {
-        return service.createSpot(createcCompanionSpotRequest.getCompanion_id() ,
-        createcCompanionSpotRequest.getTransportation());
+    public boolean createSpot(@RequestBody CompanionSpot companionSpot) {
+    return service.createSpot(companionSpot);
     }
 
-    //リクエスト用の型生成(引数)
-    class CreateCompanionSpotRequest {
-        private Long companion_id;
-        private CompanionSpot companionSpot;
-        
-        public Long getCompanion_id() {
-            return companion_id;
-        }
-        public CompanionSpot getTransportation() {
-            return companionSpot;
-        }
-    }
-
-    //しおりスタンプの格納メゾット
+    //CREATE NEW DATA FOR Companion_Stamp TABLE
     //戻り値 boolean型true/false
     @PostMapping("/create/stamp")
-    public boolean createStamp(@RequestBody CreateCompanionStampRequest companionStampRequest) {
-        return service.createStamp(companionStampRequest.getCompanion_id() , companionStampRequest.getCompanionStamp());
+    public boolean createStamp(@RequestBody CompanionStamp companionStamp) {
+        return service.createStamp(companionStamp);
     }
 
-    //リクエスト用の型生成(引数)
-    class CreateCompanionStampRequest {
-        private Long companion_id;
-        private CompanionStamp companionStamp;
-
-        public Long getCompanion_id() {
-            return companion_id;
-        }
-        public CompanionStamp getCompanionStamp() {
-            return companionStamp;
-        }
-    }
-
-
-    //しおり画像の格納メゾット
+    //CREATE NEW DATA FOR Insert_Image TABLE
     //戻り値 boolean型true/false
     @PostMapping("/create/img")
-    public boolean createImg(@RequestBody CreateInsertImageRequest createInsertImageRequest) {
-        return service.createImg(createInsertImageRequest.getCompanion_id(), createInsertImageRequest.getImage());
+    public boolean createImg(@RequestBody InsertImage insertImage) {
+        return service.createImg(insertImage);
     }
     
-    //リクエスト用の型生成(引数)
-    class CreateInsertImageRequest {
-        private Long companion_id;
-        private InsertImage image;
 
-        public Long getCompanion_id() {
-            return companion_id;
-        }
-        public InsertImage getImage() {
-            return image;
-        }
-    }
-
-    //しおり交通機関の格納メゾット
+    //CREATE NEW DATA FOR Transportation TABLE
     //戻り値 boolean型true/false
     @PostMapping("/create/trans")
-    public boolean createTrans(@RequestBody CreateTransportationRequest createTransportationRequest) {
-        return service.createTransportation(createTransportationRequest.getCompanion_id() ,
-        createTransportationRequest.getTransportation());
+    public boolean createTrans(@RequestBody Transportation transportation) {
+        return service.createTransportation(transportation);
     }
 
-    //リクエスト用の型生成(引数)
-    class CreateTransportationRequest {
-        private Long companion_id;
-        private Transportation transportation;
 
-        public Long getCompanion_id() {
-            return companion_id;
-        }
-        public Transportation getTransportation() {
-            return transportation;
-        }
+    //READ Companion TABLE DATA FROM FOREIGN KEY
+    //戻り値 Companion型
+    @GetMapping("/read/comp/{companionId}")
+    public Companion findCompanionById(Long companion_id) {
+        return service.readCompanions(companion_id);
+    }
+
+    //READ CompanionSpot TABLE DATA FROM FOREIGN KEY
+    //戻り値 List<Companion>型
+    @GetMapping("/read/spot/{companionId}")
+    public List<CompanionSpot> findCompanionSpotById(@PathVariable Long companionId) {
+        return service.readCompanionSpots(companionId);
+    }
+
+    //READ CompanionStamp TABLE DATA FROM FOREIGN KEY
+    //戻り値 List<Companion>型
+    @GetMapping("/read/stamp/{companionId}")
+    public List<CompanionStamp> findCompanionStampById(@PathVariable Long companionId) {
+        return service.readCompanionStamps(companionId);
+    }
+
+    //READ InsertImage TABLE DATA FROM FOREIGN KEY
+    //戻り値 List<Companion>型
+    @GetMapping("/read/img/{companionId}")
+    public List<InsertImage> findInsertImageById(@PathVariable Long companion_id) {
+        return service.readInsertImages(companion_id);
+    }
+
+    //READ Transportation TABLE DATA FROM FOREIGN KEY
+    //戻り値 List<Companion>型
+    @GetMapping("/read/trans/{companionId}")
+    public List<Transportation> findTransportationById(@PathVariable Long companion_id) {
+        return service.readTransportations(companion_id);
     }
 }

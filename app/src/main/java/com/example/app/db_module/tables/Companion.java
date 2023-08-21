@@ -1,44 +1,67 @@
 package com.example.app.db_module.tables;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 //Companion Table
 @Entity
 public class Companion {
 
     //column list
-    @Id
-    @Column(name = "companion_id" , nullable = false , unique = true)
+    @Column(name = "companionId" , nullable = false , unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long companion_id;
+    @Id
+    private Long companionId;
 
-    @Column(name = "companion_title")
-    private String companion_title;
+    @JsonBackReference
+    @OneToMany(mappedBy = "companion", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CompanionSpot> companionSpotsList;
 
-    @Column(name = "design_num" , nullable = false , length = 256)
-    private int design_num;
+    @Column(name = "companionTitle")
+    private String companionTitle;
+
+    @Column(name = "designNum" , nullable = false , length = 256)
+    private int designNum;
 
     //getter,setter
-    public Long getCompanion_id() {
-        return companion_id;
+    public Long getCompanionId() {
+        return companionId;
     }
-    public String getCompanion_title() {
-        return companion_title;
+
+    public void setCompanionId(Long companionId) {
+        this.companionId = companionId;
     }
-    public int getDesign_num() {
-        return design_num;
+
+    public List<CompanionSpot> getCompanionSpotsList() {
+        return companionSpotsList;
     }
-    public void setCompanion_id(Long companion_id) {
-        this.companion_id = companion_id;
+
+    public void setCompanionSpotsList(List<CompanionSpot> companionSpotsList) {
+        this.companionSpotsList = companionSpotsList;
     }
-    public void setCompanion_title(String companion_title) {
-        this.companion_title = companion_title;
+
+    public String getCompanionTitle() {
+        return companionTitle;
     }
-    public void setDesign_num(int design_num) {
-        this.design_num = design_num;
+
+    public void setCompanionTitle(String companionTitle) {
+        this.companionTitle = companionTitle;
+    }
+
+    public int getDesignNum() {
+        return designNum;
+    }
+
+    public void setDesignNum(int designNum) {
+        this.designNum = designNum;
     }
 }

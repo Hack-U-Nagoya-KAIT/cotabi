@@ -11,6 +11,7 @@ public class DataController {
 
     @RequestMapping("/api")  // 追加
 	public String home() { // 追加
+        System.out.println("World!");
 		return "Hello World"; // 追加
 	} // 追加
 

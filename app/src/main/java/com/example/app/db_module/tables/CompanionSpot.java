@@ -1,5 +1,7 @@
 package com.example.app.db_module.tables;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,61 +16,73 @@ public class CompanionSpot {
 
     //column list
     @Id
-    @Column(name = "spot_id" , nullable = false , unique = true)
+    @Column(name = "spotId" , nullable = false , unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long spot_id;
+    private Long spotId;
 
     @ManyToOne
-    @JoinColumn(name = "companion_id" , nullable = false)
-    private Companion companion_id;
+    @JoinColumn(name = "companionId" , nullable = false)
+    @JsonBackReference
+    private Companion companion;
 
-    @Column(name = "spot_url" , length = 256)
-    private String spot_url;
+    @Column(name = "spotUrl" , length = 256)
+    private String spotUrl;
 
-    @Column(name = "spot_lon" , nullable = false)
-    private float spot_lon;
+    @Column(name = "spotLon" , nullable = false)
+    private float spotLon;
 
-    @Column(name = "spot_lat" , nullable = false)
-    private float spot_lat;
+    @Column(name = "spotLat" , nullable = false)
+    private float spotLat;
 
-    @Column(name = "spot_name" , length = 256)
-    private String spot_name;
+    @Column(name = "spotName" , length = 256)
+    private String spotName;
 
     //getter,setter
-    public Long getSpot_id() {
-        return spot_id;
+    public Long getSpotId() {
+        return spotId;
     }
-    public Companion getCompanion_id() {
-        return companion_id;
+
+    public void setSpotId(Long spotId) {
+        this.spotId = spotId;
     }
-    public String getSpot_url() {
-        return spot_url;
+
+    public Companion getCompanion() {
+        return companion;
     }
-    public float getSpot_lon() {
-        return spot_lon;
+
+    public void setCompanion(Companion companion) {
+        this.companion = companion;
     }
-    public float getSpot_lat() {
-        return spot_lat;
+
+    public String getSpotUrl() {
+        return spotUrl;
     }
-    public String getSpot_name() {
-        return spot_name;
+
+    public void setSpotUrl(String spotUrl) {
+        this.spotUrl = spotUrl;
     }
-    public void setSpot_id(Long spot_id) {
-        this.spot_id = spot_id;
+
+    public float getSpotLon() {
+        return spotLon;
     }
-    public void setCompanion_id(Companion companion_id) {
-        this.companion_id = companion_id;
+
+    public void setSpotLon(float spotLon) {
+        this.spotLon = spotLon;
     }
-    public void setSpot_url(String spot_url) {
-        this.spot_url = spot_url;
+
+    public float getSpotLat() {
+        return spotLat;
     }
-    public void setSpot_lon(float spot_lon) {
-        this.spot_lon = spot_lon;
+
+    public void setSpotLat(float spotLat) {
+        this.spotLat = spotLat;
     }
-    public void setSpot_lat(float spot_lat) {
-        this.spot_lat = spot_lat;
+
+    public String getSpotName() {
+        return spotName;
     }
-    public void setSpot_name(String spot_name) {
-        this.spot_name = spot_name;
+
+    public void setSpotName(String spotName) {
+        this.spotName = spotName;
     }
 }

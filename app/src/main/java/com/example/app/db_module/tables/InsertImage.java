@@ -1,5 +1,7 @@
 package com.example.app.db_module.tables;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,52 +16,63 @@ public class InsertImage {
 
     //column list
     @Id
-    @Column(name = "img_id" , nullable = false , unique = true)
+    @Column(name = "imgId" , nullable = false , unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long img_id;
+    private Long imgId;
 
     @ManyToOne
-    @JoinColumn(name = "companion_id" , nullable = false)
-    private Companion companion_id;
+    @JoinColumn(name = "companionId")
+    @JsonBackReference
+    private Companion companion;
 
     @Column(name = "img" , nullable = false ,length = 256)
     private String img;
 
-    @Column(name = "img_lon" , nullable = false)
-    private float img_lon;
+    @Column(name = "imgLon" , nullable = false)
+    private float imgLon;
 
-    @Column(name = "img_lat" , nullable = false)
-    private float img_lat;
+    @Column(name = "imgLat" , nullable = false)
+    private float imgLat;
 
     //getter,setter
-    public Long getImg_id() {
-        return img_id;
+    public Long getImgId() {
+        return imgId;
     }
-    public Companion getCompanion_id() {
-        return companion_id;
+
+    public void setImgId(Long imgId) {
+        this.imgId = imgId;
     }
+
+    public Companion getCompanion() {
+        return companion;
+    }
+
+    public void setCompanion(Companion companion) {
+        this.companion = companion;
+    }
+
     public String getImg() {
         return img;
     }
-    public float getImg_lon() {
-        return img_lon;
-    }
-    public float getImg_lat() {
-        return img_lat;
-    }
-    public void setImg_id(Long img_id) {
-        this.img_id = img_id;
-    }
-    public void setCompanion_id(Companion companion_id) {
-        this.companion_id = companion_id;
-    }
+
     public void setImg(String img) {
         this.img = img;
     }
-    public void setImg_lon(float img_lon) {
-        this.img_lon = img_lon;
+
+    public float getImgLon() {
+        return imgLon;
     }
-    public void setImg_lat(float img_lat) {
-        this.img_lat = img_lat;
+
+    public void setImgLon(float imgLon) {
+        this.imgLon = imgLon;
     }
+
+    public float getImgLat() {
+        return imgLat;
+    }
+
+    public void setImgLat(float imgLat) {
+        this.imgLat = imgLat;
+    }
+
 }
