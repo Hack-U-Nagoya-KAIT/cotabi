@@ -8,7 +8,7 @@ const PromptScreen = ({ navigation }) => {
 
   const handleSearch = () => {
     // ここに検索処理を追加
-    // たとえば、API呼び出しやデータのフィルタリングなど
+    
     // 検索結果画面に遷移
     navigation.navigate('SearchResult', {
       budget,
