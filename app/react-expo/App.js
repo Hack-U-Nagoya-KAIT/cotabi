@@ -2,16 +2,20 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import CurrentScreen from './screens/CurrentScreen';
+import HistoryScreen from './screens/HistoryScreen';
 import GeolocationScreen from './screens/Geolocation';
 import HomeScreen from './screens/HomeScreen';
+import PromptScreen from './screens/PromptScreen';
+import SearchScreen from './screens/SearchScreen';
+import SettingScreen from './screens/SettingScreen';
 import UserScreen from './screens/UserScreen';
-
 const Stack = createNativeStackNavigator();
 
-export default function App() {
+export default function App() {//画面遷移管理
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Geo'>{/* アプリ起動最初の画面設定 */}
+      <Stack.Navigator initialRouteName='Home'>{/* アプリ起動最初の画面設定 */}
         <Stack.Screen
         name="Home"
         component={HomeScreen}
@@ -21,6 +25,25 @@ export default function App() {
         component={UserScreen}
         options={{title: 'ユーザ画面',headerShown: true}} />
         <Stack.Screen
+        name="Prompt"
+        component={PromptScreen} // PromptScreen コンポーネントを指定
+        options={{ title: 'プロンプト入力画面', headerShown: true }}/>
+        <Stack.Screen
+        name="Search"
+        component={SearchScreen} // SearchScreen コンポーネントを指定
+        options={{ title: '検索画面', headerShown: true }}/>
+        <Stack.Screen
+        name="Current"
+        component={CurrentScreen}
+        options={{title: '現在のプラン画面',headerShown: true}} />
+        <Stack.Screen
+        name="History"
+        component={HistoryScreen}
+        options={{ title: '履歴画面', headerShown: true }} />
+        <Stack.Screen
+        name="Setting"
+        component={SettingScreen}
+        options={{ title: '設定画面', headerShown: true }} />
         name="Geo"
         component={GeolocationScreen}
         options={{title: '位置情報画面'}}

@@ -1,19 +1,50 @@
-import React, { useEffect } from 'react';
-import { Button, Text, View } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+
+const FooterButton = ({ title, onPress }) => (
+  <TouchableOpacity style={styles.footerButton} onPress={onPress}>
+    <Text style={styles.footerButtonText}>{title}</Text>
+  </TouchableOpacity>
+);
 
 const HomeScreen = ({ navigation }) => {
-  useEffect(() => {
-    console.log('Home Mount');
-    return () => {
-      console.log('Home Unmount');
-    };
-  }, []);
   return (
-    <View>
+    <View style={styles.container}>
       <Text>ホーム画面</Text>
-      <Button title="ユーザ" onPress={() => navigation.navigate('User',{userId: 1,})}/>
+      {/* フッター */}
+      <View style={styles.footer}>
+        <FooterButton title="ユーザ画面" onPress={() => navigation.navigate('User')} />
+        <FooterButton title="履歴画面" onPress={() => navigation.navigate('History')} />
+        <FooterButton title="設定画面" onPress={() => navigation.navigate('Setting')} />
+      </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#E5DFD8',
+  },
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    width: '100%',
+    position: 'absolute',
+    bottom: 0,
+    backgroundColor: 'white',
+    borderTopWidth: 1,
+    borderColor: '#ddd',
+  },
+  footerButton: {
+    paddingVertical: 10,
+  },
+  footerButtonText: {
+    fontSize: 16,
+  },
+});
 
 export default HomeScreen;
