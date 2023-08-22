@@ -4,6 +4,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import CurrentScreen from './screens/CurrentScreen';
 import HistoryScreen from './screens/HistoryScreen';
+import GeolocationScreen from './screens/Geolocation';
 import HomeScreen from './screens/HomeScreen';
 import PromptScreen from './screens/PromptScreen';
 import SearchScreen from './screens/SearchScreen';
@@ -43,7 +44,10 @@ export default function App() {//画面遷移管理
         name="Setting"
         component={SettingScreen}
         options={{ title: '設定画面', headerShown: true }} />
-        
+        name="Geo"
+        component={GeolocationScreen}
+        options={{title: '位置情報画面'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
