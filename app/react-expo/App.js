@@ -3,8 +3,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import CurrentScreen from './screens/CurrentScreen';
-import HistoryScreen from './screens/HistoryScreen';
 import GeolocationScreen from './screens/Geolocation';
+import HistoryScreen from './screens/HistoryScreen';
 import HomeScreen from './screens/HomeScreen';
 import PromptScreen from './screens/PromptScreen';
 import SearchScreen from './screens/SearchScreen';
@@ -44,10 +44,10 @@ export default function App() {//画面遷移管理
         name="Setting"
         component={SettingScreen}
         options={{ title: '設定画面', headerShown: true }} />
+        <Stack.Screen
         name="Geo"
         component={GeolocationScreen}
-        options={{title: '位置情報画面'}}
-        />
+        options={{title: '位置情報画面'}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

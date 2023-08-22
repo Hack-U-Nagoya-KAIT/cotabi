@@ -38,3 +38,4 @@ react-expo/node_modules
 react-expo/.expo
 target
 phpmyadmin
+package-lock.json
