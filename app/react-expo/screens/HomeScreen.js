@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#E5DFD8',
   },
   footer: {
     flexDirection: 'row',

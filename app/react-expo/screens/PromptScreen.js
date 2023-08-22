@@ -1,19 +1,22 @@
+import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 const PromptScreen = ({ navigation }) => {
   const [budget, setBudget] = useState('');
-  const [timeRequired, setTimeRequired] = useState('');
+  const [hours, setHours] = useState('');
+  const [minutes, setMinutes] = useState('');
   const [concept, setConcept] = useState('');
 
   const handleSearch = () => {
-    // ここに検索処理を追加
-    
+    // 時間と分を合計して所要時間を算出
+    const timeRequired = parseInt(hours) * 60 + parseInt(minutes);
+
     // 検索結果画面に遷移
-    navigation.navigate('SearchResult', {
-      budget,
-      timeRequired,
-      concept,
+    navigation.navigate('Search', {
+      budget: budget,
+      timeRequired: timeRequired,
+      concept: concept,
     });
   };
 
@@ -27,19 +30,44 @@ const PromptScreen = ({ navigation }) => {
         onChangeText={setBudget}
         keyboardType="numeric"
       />
-      <TextInput
-        style={styles.input}
-        placeholder="所要時間"
-        value={timeRequired}
-        onChangeText={setTimeRequired}
-      />
+      <Text style={styles.unit}>円</Text>
+      
+      <View style={styles.timeInputContainer}>
+        <TextInput
+          style={styles.timeInput}
+          placeholder="時間"
+          value={hours}
+          onChangeText={setHours}
+          keyboardType="numeric"
+        />
+        
+        <Text>時間</Text>
+        <TextInput
+          style={styles.timeInput}
+          placeholder="分"
+          value={minutes}
+          onChangeText={setMinutes}
+          keyboardType="numeric"
+        />
+        <Text>分</Text>
+      </View>
       <TextInput
         style={styles.input}
         placeholder="コンセプト"
         value={concept}
         onChangeText={setConcept}
       />
-      <Button title="検索する" onPress={handleSearch} />
+      <TouchableOpacity
+        style={styles.customButton}
+        onPress={handleSearch}
+      >
+        <LinearGradient
+          colors={['#022534', '#08546C', '#A0BACC']}
+          style={[styles.customButton, styles.createButton]}
+        >
+          <Text style={styles.buttonText}>検索する</Text>
+        </LinearGradient>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -59,6 +87,35 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     padding: 10,
     marginBottom: 15,
+  },
+  unit: {
+    marginBottom: 15,
+  },
+  timeInputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  timeInput: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    padding: 10,
+  },
+  customButton: {
+    borderRadius: 34,
+    overflow: 'hidden',
+    marginBottom: 10,
+  },
+  createButton: {
+    width: 350,
+    height: 40,
+    transform: [{ rotate: '0deg' }],
+  },
+  buttonText: {
+    color: '#FFF',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
 

@@ -2,12 +2,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import CurrentScreen from './screens/CurrentScreen';
 import HistoryScreen from './screens/HistoryScreen';
 import HomeScreen from './screens/HomeScreen';
 import PromptScreen from './screens/PromptScreen';
+import SearchScreen from './screens/SearchScreen';
 import SettingScreen from './screens/SettingScreen';
 import UserScreen from './screens/UserScreen';
-
 const Stack = createNativeStackNavigator();
 
 export default function App() {//画面遷移管理
@@ -23,9 +24,17 @@ export default function App() {//画面遷移管理
         component={UserScreen}
         options={{title: 'ユーザ画面',headerShown: true}} />
         <Stack.Screen
-        name="Prompt" // スクリーンの名前を指定
+        name="Prompt"
         component={PromptScreen} // PromptScreen コンポーネントを指定
         options={{ title: 'プロンプト入力画面', headerShown: true }}/>
+        <Stack.Screen
+        name="Search"
+        component={SearchScreen} // SearchScreen コンポーネントを指定
+        options={{ title: '検索画面', headerShown: true }}/>
+        <Stack.Screen
+        name="Current"
+        component={CurrentScreen}
+        options={{title: '現在のプラン画面',headerShown: true}} />
         <Stack.Screen
         name="History"
         component={HistoryScreen}
