@@ -4,10 +4,11 @@ package com.example.app.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+
 public class Yolp {
     public static String getYolpData(double latitude, double longitude , double radius) {
         String baseUrl = "https://map.yahooapis.jp/search/local/V1/localSearch";
-        String apiKey = "dj00aiZpPWNvY0Z0MnpFaEJkWiZzPWNvbnN1bWVyc2VjcmV0Jng9N2Q-"; // ここに実際のAPIキーを入力
+        
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> response_1 = restTemplate.getForEntity(
