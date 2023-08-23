@@ -1,25 +1,41 @@
-import { LinearGradient } from 'expo-linear-gradient';
-import React from 'react';
-import { TouchableOpacity, Button, StyleSheet, Text, View, ScrollView } from 'react-native';
 import MaskedView from '@react-native-masked-view/masked-view';
+import { LinearGradient } from 'expo-linear-gradient';
+import React, { useState } from 'react';
+import { Button, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const SearchScreen = ({ navigation, route }) => {
   const { budget, timeRequired, concept } = route.params;
+  const [showAlert, setShowAlert] = useState(false);
+  const [showAbortAlert, setShowAbortAlert] = useState(false);
 
   const handleSavePlan = () => {
     // プランの保存処理
   };
 
-  const handleChangeConditions = () => {
-    // 条件変更処理
+  const handleShowAlert = () => {
+    setShowAlert(true);
   };
 
-  const handleRegenerate = () => {
-    // 再生成処理
+  const handleShowAbortAlert = () => {
+    setShowAbortAlert(true);
+  };
+
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+    setShowAbortAlert(false);
+  };
+
+  const handleAction = (actionType) => {
+    if (actionType === 'regenerate') {
+      // 再生成処理
+    } else if (actionType === 'changeConditions') {
+      // 条件変更処理
+    }
+    handleCloseAlert();
   };
 
   const handleAbort = () => {
-    // 生成中断処理
+    handleShowAbortAlert();
   };
 
   return (
@@ -178,6 +194,51 @@ const styles = StyleSheet.create({
     fontSize:16,
     fontWeight:'bold',
     textDecorationLine:'underline',
+  },
+  alertContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  alertBox: {
+    backgroundColor: '#FFF',
+    padding: 20,
+    borderRadius: 10,
+    alignItems: 'center',
+    elevation: 5,
+  },
+  alertText: {
+    fontSize: 16,
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  alertButtonContainer: {
+    flexDirection: 'column', // 縦に配置
+    width: '100%',
+    alignItems: 'center',
+  },
+  alertButton: {
+    width: '80%',
+    paddingVertical: 10,
+    borderRadius: 5,
+    marginVertical: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  alertButtonText: {
+    color: '#FFF',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  changeConditionsButton: {
+    backgroundColor: '#08546C', // 再生成・条件変更ボタンの色
+  },
+  abortButton: {
+    backgroundColor: '#08546C', // 中断ボタンの色
+  },
+  cancelButton: {
+    backgroundColor: '#A0BACC', // キャンセルボタンの色
   },
   buttonShadow: {
     shadowColor:'#000',
