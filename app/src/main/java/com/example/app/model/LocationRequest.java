@@ -9,6 +9,7 @@ public class LocationRequest {
 
 
     // コンストラクタ、ゲッター、セッターなどを定義
+    
 
     public double getLatitude() {
         return latitude;
