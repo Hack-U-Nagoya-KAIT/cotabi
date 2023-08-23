@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.app.SetDistance.SetDistance;
 import com.example.app.model.LocationRequest;
+import com.example.app.service.Yolp;
 @RestController
 public class LocationController {
     @RequestMapping("/api")
@@ -18,10 +19,13 @@ public class LocationController {
         double latitude = request.getLatitude();
         double longitude = request.getLongitude();
         //int time = request.getTime();
-        int budget = request.getBudget();
+        //int budget = request.getBudget();
         //String concept = request.getConcept();
 
         SetDistance setDistance = new SetDistance();
+        request.setBudget(2050);
+        int budget= request.getBudget();
+        
         double distance = setDistance.GenerateDistance(budget);
 
         // ここで必要な処理を行う（データベースへの保存など）
