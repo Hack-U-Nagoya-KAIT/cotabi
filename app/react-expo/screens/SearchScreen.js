@@ -1,6 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
-import { TouchableOpacity, Button, StyleSheet, Text, View } from 'react-native';
+import { TouchableOpacity, Button, StyleSheet, Text, View, ScrollView } from 'react-native';
 import MaskedView from '@react-native-masked-view/masked-view';
 
 const SearchScreen = ({ navigation, route }) => {
@@ -24,31 +24,73 @@ const SearchScreen = ({ navigation, route }) => {
 
   return (
     <View style={styles.container} >
-      <Text>検索結果</Text>
-      <Text>予算: {budget}円</Text>
-      <Text>所要時間: {timeRequired}分</Text>
-      <Text>コンセプト: {concept}</Text>
-        
-      <TouchableOpacity title="しおりを保存" style = {styles.primaryButtonLayout} onPress={handleSavePlan}>
-        <LinearGradient colors={['#022534', '#08546C', '#A0BACC']} 
-          start={{x:0.0, y:0.5}}
-          end={{x:1.0, y:0.5}}
-          style={styles.primaryButton}>
-          <Text style = {styles.primaryButtonText}>しおりを保存</Text>
-        </LinearGradient>
-      </TouchableOpacity>
-      <TouchableOpacity title="条件変更・再生成" style = {[styles.secondaryButtonLayout, ]} onPress={handleChangeConditions}>
-        <LinearGradient colors={['#022534', '#08546C', '#A0BACC']} 
-          start={{x:0.0, y:0.5}}
-          end={{x:1.0, y:0.5}}
-          style={{borderRadius: 33}}>
-          <View style = {styles.secondaryButton}>
-            <GradientText style={styles.secondaryButtonText}>条件変更・再生成</GradientText>
-          </View>
-        </LinearGradient>
-      </TouchableOpacity>
-      <Button title="生成中断" onPress={handleAbort} />
-      <Button title="戻る" onPress={() => navigation.goBack()} />
+      <View style = {[{flex:2}, {alignSelf:'stretch'}]}>
+        {/* <Text>検索結果</Text>
+        <Text>予算: {budget}円</Text>
+        <Text>所要時間: {timeRequired}分</Text>
+        <Text>コンセプト: {concept}</Text> */}
+        <ScrollView style = {styles.outputScrollView} showsVerticalScrollIndicator = {true}>
+          <Text style = {styles.outputText}>Hello, World! Nice to meet you! This is OutputText and ScrollView!</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+          <Text style = {styles.outputText}>OutputText</Text>
+        </ScrollView>
+      </View>
+      <View style = {[{flex:1}, {alignSelf:'stretch'}]}>  
+        <TouchableOpacity title="しおりを保存" style = {[styles.primaryButtonLayout, styles.buttonShadow]} onPress={handleSavePlan}>
+          <LinearGradient colors={['#022534', '#08546C', '#A0BACC']} 
+            start={{x:0.0, y:0.5}}
+            end={{x:1.0, y:0.5}}
+            style={styles.primaryButton}>
+            <Text style = {styles.primaryButtonText}>しおりを保存</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+        <TouchableOpacity title="条件変更・再生成" style = {[styles.secondaryButtonLayout, styles.buttonShadow]} onPress={handleChangeConditions}>
+          <LinearGradient colors={['#022534', '#08546C', '#A0BACC']} 
+            start={{x:0.0, y:0.5}}
+            end={{x:1.0, y:0.5}}
+            style={{borderRadius: 33}}>
+            <View style = {styles.secondaryButton}>
+              <GradientText style={styles.secondaryButtonText}>条件変更・再生成</GradientText>
+            </View>
+          </LinearGradient>
+        </TouchableOpacity>
+        <TouchableOpacity title="生成中断" style = {styles.tertiaryButtonLayout} onPress={handleAbort} >
+          <GradientText style = {styles.tertiaryButtonText}> 生成中断 </GradientText>
+        </TouchableOpacity>
+        <Button title="戻る" onPress={() => navigation.goBack()} />
+      </View>
     </View>
   );
 };
@@ -74,14 +116,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#E5DFD8',
   },
+  outputScrollView: {
+    margin:16,
+    alignSelf:'stretch',
+    textAlign:"left",
+    backgroundColor:'#EFE8E5',
+    borderColor:'#000000',
+    borderWidth:2,
+    borderRadius:16,
+    padding:8,
+  },
+  outputText: {
+    fontSize:16,
+  },
   primaryButtonLayout: {
     alignSelf:'stretch',
     marginHorizontal:16,
     marginVertical:8,
-    shadowColor:'#000',
-    shadowOffset:{width:2, height:2},
-    shadowOpacity:0.5,
-    shadowRadius: 2,
+    backgroundColor:"#E5DFD8",
+    borderRadius:33,
   },
   primaryButton: {
     borderStyle:'solid',
@@ -99,10 +152,8 @@ const styles = StyleSheet.create({
     alignSelf:'stretch',
     marginHorizontal:16,
     marginVertical:8,
-    shadowColor:'#000',
-    shadowOffset:{width:2, height:2},
-    shadowOpacity:0.5,
-    shadowRadius: 2,
+    backgroundColor:"#E5DFD8",
+    borderRadius:33,
   },
   secondaryButton: {
     margin:2,
@@ -114,8 +165,26 @@ const styles = StyleSheet.create({
     margin:16,
     fontSize:16,
     fontWeight:'bold'
-  }
+  },
+  tertiaryButtonLayout:{
+    marginVertical:8,
+  },
+  tertiaryButton: {
 
+  },
+  tertiaryButtonText: {
+    textAlign:'center',
+    margin:16,
+    fontSize:16,
+    fontWeight:'bold',
+    textDecorationLine:'underline',
+  },
+  buttonShadow: {
+    shadowColor:'#000',
+    shadowOffset:{width:2, height:2},
+    shadowOpacity:0.5,
+    shadowRadius: 2,
+  }
   
 });
 
