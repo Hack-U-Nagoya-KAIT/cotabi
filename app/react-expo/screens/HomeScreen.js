@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     width: '100%',
+    height: 75,
     position: 'absolute',
     bottom: 0,
     backgroundColor: 'white',
