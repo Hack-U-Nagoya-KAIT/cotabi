@@ -1,7 +1,12 @@
+<<<<<<< Updated upstream
 import MaskedView from '@react-native-masked-view/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState } from 'react';
 import { Button, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+=======
+import React, { useState } from 'react';
+import { Button, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+>>>>>>> Stashed changes
 
 const SearchScreen = ({ navigation, route }) => {
   const { budget, timeRequired, concept } = route.params;
@@ -39,6 +44,7 @@ const SearchScreen = ({ navigation, route }) => {
   };
 
   return (
+<<<<<<< Updated upstream
     <View style={styles.container} >
       <View style = {[{flex:2}, {alignSelf:'stretch'}]}>
         {/* <Text>検索結果</Text>
@@ -107,6 +113,88 @@ const SearchScreen = ({ navigation, route }) => {
         </TouchableOpacity>
         <Button title="戻る" onPress={() => navigation.goBack()} />
       </View>
+=======
+    <View style={styles.container}>
+      <Text>検索結果</Text>
+      <Text>予算: {budget}円</Text>
+      <Text>所要時間: {timeRequired}分</Text>
+      <Text>コンセプト: {concept}</Text>
+
+      <Button title="プランを保存" onPress={handleSavePlan} />
+
+      {/* 条件変更・再生成ボタン */}
+      <Button title="条件変更・再生成" onPress={handleShowAlert} />
+
+      {/* 生成中断ボタン */}
+      <Button title="生成中断" onPress={handleAbort} />
+
+      {/* 戻るボタン */}
+      <Button title="戻る" onPress={() => navigation.goBack()} />
+
+      {/* 再生成アラートダイアログ */}
+      <Modal
+        visible={showAlert}
+        transparent={true}
+        animationType="fade"
+        onRequestClose={handleCloseAlert}
+      >
+        <View style={styles.alertContainer}>
+          <View style={styles.alertBox}>
+            <Text style={styles.alertText}>
+              再生成・条件変更しますか？
+            </Text>
+            <View style={styles.alertButtonContainer}>
+              <TouchableOpacity
+                style={[styles.alertButton, styles.changeConditionsButton]}
+                onPress={() => {
+                  navigation.navigate('Prompt');
+                }}
+              >
+                <Text style={styles.alertButtonText}>再生成・条件変更</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.alertButton, styles.cancelButton]}
+                onPress={handleCloseAlert}
+              >
+                <Text style={styles.alertButtonText}>キャンセル</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+
+      {/* 生成中断アラートダイアログ */}
+      <Modal
+        visible={showAbortAlert}
+        transparent={true}
+        animationType="fade"
+        onRequestClose={handleCloseAlert}
+      >
+        <View style={styles.alertContainer}>
+          <View style={styles.alertBox}>
+            <Text style={styles.alertText}>
+              旅の作成を中断しますか？
+            </Text>
+            <View style={styles.alertButtonContainer}>
+              <TouchableOpacity
+                style={[styles.alertButton, styles.abortButton]}
+                onPress={() => {
+                  navigation.navigate('User');
+                }}
+              >
+                <Text style={styles.alertButtonText}>中断</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.alertButton, styles.cancelButton]}
+                onPress={handleCloseAlert}
+              >
+                <Text style={styles.alertButtonText}>キャンセル</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+>>>>>>> Stashed changes
     </View>
   );
 };
@@ -132,6 +220,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#E5DFD8',
   },
+<<<<<<< Updated upstream
   outputScrollView: {
     margin:16,
     alignSelf:'stretch',
@@ -195,6 +284,8 @@ const styles = StyleSheet.create({
     fontWeight:'bold',
     textDecorationLine:'underline',
   },
+=======
+>>>>>>> Stashed changes
   alertContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -240,6 +331,7 @@ const styles = StyleSheet.create({
   cancelButton: {
     backgroundColor: '#A0BACC', // キャンセルボタンの色
   },
+<<<<<<< Updated upstream
   buttonShadow: {
     shadowColor:'#000',
     shadowOffset:{width:2, height:2},
@@ -247,6 +339,8 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
   }
   
+=======
+>>>>>>> Stashed changes
 });
 
 export default SearchScreen;
