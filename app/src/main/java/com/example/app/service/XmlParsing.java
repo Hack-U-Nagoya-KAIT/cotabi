@@ -1,4 +1,4 @@
-package com.example.app.controller;
+package com.example.app.service;
 
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -17,11 +17,13 @@ class YolpData {
     String name;
     double lat;
     double lon;
+    String tag;
 
-    public YolpData(String name, double lat, double lon) {
+    public YolpData(String name, double lat, double lon, String tag) {
         this.name = name;
         this.lat = lat;
         this.lon = lon;
+        this.tag = tag;
     }
 }
 
@@ -39,8 +41,6 @@ public class XmlParsing {
 
                 NodeList nodeList = document.getElementsByTagName("Feature");
 
-                System.out.println(nodeList.getLength());
-
                 for (int i = 0; i < nodeList.getLength(); i++) {
                     Node node = nodeList.item(i);
 
@@ -52,6 +52,8 @@ public class XmlParsing {
 
                         Element nameElement = (Element) nameNodeList.item(0);
                         String name = nameElement.getTextContent();
+                        Element tagElement = (Element) nameNodeList.item(2);
+                        String tag = tagElement.getTextContent();
 
                         Element CoordinatesElement = (Element) CoordinatesNodeList.item(0);
                         String coordinates = CoordinatesElement.getTextContent();
@@ -62,13 +64,8 @@ public class XmlParsing {
                         double lon = Double.parseDouble(coordParts[0]);
 
                         // YolpDataオブジェクトを作成してリストに追加
-                        YolpData data = new YolpData(name, lat, lon);
+                        YolpData data = new YolpData(name, lat, lon, tag);
                         dataList.add(data);
-
-                        System.out.println("Name: " + name);
-                        System.out.println("座標: " + coordinates);
-                        System.out.println("lat: " + lat);
-                        System.out.println("lon: " + lon);
                     }
                 }
             } catch (Exception e) {
@@ -80,7 +77,11 @@ public class XmlParsing {
             System.out.println("Name: " + data.name);
             System.out.println("lat: " + data.lat);
             System.out.println("lon: " + data.lon);
+            System.out.println("tag: " + data.tag);
         }
-        //ChatGPTService.getChatGptResponse(dataList);
+        String taglist=Stringbuilder.builder(dataList);
+
+        System.out.println(taglist);
+        ChatGptService.generateTravelSuggestion(dataList);
     }
 }

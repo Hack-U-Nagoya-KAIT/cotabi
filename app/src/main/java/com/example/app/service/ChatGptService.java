@@ -1,4 +1,6 @@
-package com.example.app.controller;
+package com.example.app.service;
+
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -9,14 +11,15 @@ import org.springframework.web.client.RestTemplate;
 
 public class ChatGptService {
 
-    public void generateTravelSuggestion() {
+    public static void generateTravelSuggestion(List<YolpData> data) {
         RestTemplate restTemplate = new RestTemplate();
 
         String model = "gpt-3.5-turbo";
+        //String dataList = data.get(0).tag;
         String dataList = "水族館,遊園地,ラーメン屋,イタリアンレストラン";
-        String apiKey = "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";
+        String apiKey = "";//ここにapiKeyを入れて
         String concept = "一人旅";
-        String prompt = "以下のデータリストを元に、" + concept + "の旅行ルートを提案してください。\n" + dataList;
+        String prompt = "以下のデータリストを元に、" + concept + "の旅行ルートを箇条書きで提案してください。\n" + dataList;
         String chatGptApiEndpoint = "https://api.openai.com/v1/chat/completions";
 
         HttpHeaders headers = new HttpHeaders();
@@ -45,11 +48,7 @@ public class ChatGptService {
 
         String response = restTemplate.postForObject(chatGptApiEndpoint, entity, String.class);
 
+        System.out.println(data.get(0).tag);
         System.out.println(response);
-    }
-
-    public static void main(String[] args) {
-        ChatGptService chatGptService = new ChatGptService();
-        chatGptService.generateTravelSuggestion();
     }
 }
