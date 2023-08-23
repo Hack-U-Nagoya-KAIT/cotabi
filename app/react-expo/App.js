@@ -15,7 +15,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {//画面遷移管理
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home'>{/* アプリ起動最初の画面設定 */}
+      <Stack.Navigator initialRouteName='Geo'>{/* アプリ起動最初の画面設定 */}
         <Stack.Screen
         name="Home"
         component={HomeScreen}
