@@ -3,6 +3,9 @@ package com.example.app.model;
 public class LocationRequest {
     private double latitude;
     private double longitude;
+    private int budget;
+    private String concept;
+
 
     // コンストラクタ、ゲッター、セッターなどを定義
 
@@ -21,4 +24,23 @@ public class LocationRequest {
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
+
+    public int getBudget() {
+        return budget;
+    }
+
+    public void setBudget(int budget) {
+        this.budget = budget;
+    }
+
+    public String getConcept() {
+        return concept;
+    }
+
+    public void setConcept(String concept) {
+        this.concept = concept;
+    }
+
+    
+
 }
