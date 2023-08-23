@@ -13,7 +13,7 @@ public class Yolp {
         Yolp.apiKey = apiKey;
     }
 
-    public static String getYolpData(double latitude, double longitude, double radius) {
+    public static void getYolpData(double latitude, double longitude, double radius) {
         String baseUrl = "https://map.yahooapis.jp/search/local/V1/localSearch";
 
         RestTemplate restTemplate = new RestTemplate();
@@ -68,6 +68,5 @@ public class Yolp {
         System.out.println("範囲" + radius);
 
         XmlParsing.xml(response1Body, response2Body, response3Body, response4Body, response5Body, response6Body);
-        return response1Body + response2Body + response3Body + response4Body;
     }
 }

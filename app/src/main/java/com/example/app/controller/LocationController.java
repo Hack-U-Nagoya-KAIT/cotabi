@@ -29,8 +29,8 @@ public class LocationController {
         double distance = setDistance.GenerateDistance(budget);
 
         // ここで必要な処理を行う（データベースへの保存など）
-        String yolpData =Yolp.getYolpData(latitude , longitude , distance);
+        Yolp.getYolpData(latitude , longitude , distance);
 
-        return "位置情報が受信されました。"+latitude+" "+longitude+yolpData;
+        return "位置情報が受信されました。"+latitude+" "+longitude;
     }
 }
