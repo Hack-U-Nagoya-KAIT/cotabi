@@ -79,9 +79,8 @@ public class XmlParsing {
             System.out.println("lon: " + data.lon);
             System.out.println("tag: " + data.tag);
         }
-        String taglist=Stringbuilder.builder(dataList);
-
+        String taglist=ListSplit.Split(dataList);
         System.out.println(taglist);
-        ChatGptService.generateTravelSuggestion(dataList);
+        ChatGptService.generateTravelSuggestion(taglist);
     }
 }
