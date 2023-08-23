@@ -81,6 +81,6 @@ public class XmlParsing {
             System.out.println("lat: " + data.lat);
             System.out.println("lon: " + data.lon);
         }
-        ChatGPTService.getChatGptResponse(dataList);
+        //ChatGPTService.getChatGptResponse(dataList);
     }
 }
