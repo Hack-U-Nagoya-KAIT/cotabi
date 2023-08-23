@@ -4,6 +4,7 @@ public class LocationRequest {
     private double latitude;
     private double longitude;
     private int budget;
+    private int time;
     private String concept;
 
 
@@ -39,6 +40,14 @@ public class LocationRequest {
 
     public void setConcept(String concept) {
         this.concept = concept;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
     }
 
     
