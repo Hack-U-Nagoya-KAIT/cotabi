@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   primaryButton: {
     borderStyle:'solid',
     borderColor:'#FFFFFF',
-    borderWidth:'1px',
+    borderWidth:1,
     borderRadius:33,
   },
   primaryButtonText: {
