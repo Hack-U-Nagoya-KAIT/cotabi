@@ -57,17 +57,21 @@ const PromptScreen = ({ navigation }) => {
         value={concept}
         onChangeText={setConcept}
       />
+      <View style = {styles.c}>
       <TouchableOpacity
-        style={styles.customButton}
+        style={[styles.primaryButtonLayout, styles.buttonShadow]}
         onPress={handleSearch}
       >
         <LinearGradient
-          colors={['#022534', '#08546C', '#A0BACC']}
-          style={[styles.customButton, styles.createButton]}
+          colors={['#022534', '#08546C', '#A0BACC']} 
+          start={{x:0.0, y:0.5}}
+          end={{x:1.0, y:0.5}}
+          style={styles.primaryButton}
         >
-          <Text style={styles.buttonText}>検索する</Text>
+          <Text style={styles.primaryButtonText}>検索する</Text>
         </LinearGradient>
       </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -75,7 +79,7 @@ const PromptScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding:16
   },
   heading: {
     fontSize: 20,
@@ -117,6 +121,34 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  
+  primaryButtonLayout: {
+    alignSelf:'stretch',
+    // marginHorizontal:16,
+    marginVertical:8,
+    backgroundColor:"#E5DFD8",
+    borderRadius:33,
+  },
+  primaryButton: {
+    borderStyle:'solid',
+    borderColor:'#FFFFFF',
+    borderWidth:1,
+    borderRadius:33,
+  },
+  primaryButtonText: {
+    textAlign:'center',
+    margin:16,
+    color:'#FFFFFF',
+    fontSize:16,
+    fontWeight:'bold',
+  },
+  buttonShadow: {
+    shadowColor:'#000',
+    shadowOffset:{width:2, height:2},
+    shadowOpacity:0.5,
+    shadowRadius: 2,
+  }
+
 });
 
 export default PromptScreen;
