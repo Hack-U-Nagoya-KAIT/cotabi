@@ -7,7 +7,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/cotabi_icon.svg",
+      "image": "./assets/cotabi_icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#F0E9E0"
     },
