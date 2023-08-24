@@ -1,24 +1,66 @@
 import { LinearGradient } from 'expo-linear-gradient';
+import * as Location from 'expo-location';
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native';
 
 const PromptScreen = ({ navigation }) => {
   const [budget, setBudget] = useState('');
   const [hours, setHours] = useState('');
   const [minutes, setMinutes] = useState('');
   const [concept, setConcept] = useState('');
+  const [location, setLocation] = useState(null);
 
-  const handleSearch = () => {
-    // 時間と分を合計して所要時間を算出
+  const handleSearch = async () => {
     const timeRequired = parseInt(hours) * 60 + parseInt(minutes);
 
-    // 検索結果画面に遷移
-    navigation.navigate('Search', {
-      budget: budget,
-      timeRequired: timeRequired,
-      concept: concept,
-    });
+    try {
+      let response = await fetch('https://cotabi.ngrok.app/api/location', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          time: timeRequired,
+          budget: parseInt(budget),
+          concept: concept,
+          latitude: location?.coords.latitude,
+          longitude: location?.coords.longitude,
+        }),
+      });
+
+      let jsonResponse = await response.json();
+
+      if (jsonResponse.success) {
+        navigation.navigate('Search', {
+          budget: budget,
+          timeRequired: timeRequired,
+          concept: concept,
+        });
+      } else {
+        Alert.alert("Error", "Failed to post data to the server.");
+      }
+    } catch (error) {
+      console.error(error);
+      Alert.alert("Error", "An error occurred while communicating with the server.");
+    }
   };
+
+  const getGeolocation = async () => {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== 'granted') {
+      console.error('位置情報のアクセスが許可されていません');
+      return;
+    }
+
+    let currentLocation = await Location.getCurrentPositionAsync({});
+    setLocation(currentLocation);
+  };
+
+  // 位置情報の取得ボタンをクリックするたびに位置情報を更新
+  React.useEffect(() => {
+    getGeolocation();
+  }, []);
 
   return (
     <View style={styles.container}>
