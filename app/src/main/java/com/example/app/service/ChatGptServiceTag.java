@@ -9,15 +9,14 @@ import org.springframework.web.client.RestTemplate;
 
 public class ChatGptServiceTag {
 
-    public static String generateTravelSuggestion(String taglist) {
+    public static String generateTravelSuggestion(String taglist,String concept) {
         RestTemplate restTemplate = new RestTemplate();
 
         String model = "gpt-3.5-turbo";
         String dataList = taglist;
         //String dataList = "水族館,遊園地,ラーメン屋,イタリアンレストラン";
-        String apiKey = "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";//ここにapiKeyを入れて
-        String concept = "お寺参り";
-        String prompt = "以下のデータリストを元に、コンセプト:" + concept + "に沿った、データをjson形式で返して下さい。コンセプトに沿わないデータはいくつか消してください。出力はデータのみでいいです。\n" + dataList;
+        String apiKey = "";//ここにapiKeyを入れて
+        String prompt = "以下のデータリストを元に、コンセプト:" + concept + "に沿った、データを3つ選びをjson形式でデータリストと同じく,で区切りで返して下さい。余計な文はいりません。\n" + dataList;
         String chatGptApiEndpoint = "https://api.openai.com/v1/chat/completions";
 
         HttpHeaders headers = new HttpHeaders();
@@ -26,7 +25,7 @@ public class ChatGptServiceTag {
 
         JSONObject systemMessage = new JSONObject();
         systemMessage.put("role", "system");
-        systemMessage.put("content", "You are the assistant who selects the tags for the concept.");
+        systemMessage.put("content", "You are the assistant who selects the data for the concept.");
 
         JSONObject userMessage = new JSONObject();
         userMessage.put("role", "user");

@@ -1,7 +1,12 @@
 package com.example.app.service;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
+
+import com.example.app.model.ResponseBody;
+import com.example.app.model.YolpData;
 
 public class Yolp {
 
@@ -12,7 +17,7 @@ public class Yolp {
         //         // Yolp.apiKey = apiKey;
         // }
 
-        public static String getYolpData(double latitude, double longitude, double radius) {
+        public static List<YolpData> getYolpData(double latitude, double longitude, double radius) {
                 String baseUrl = "https://map.yahooapis.jp/search/local/V1/localSearch";
 
                 RestTemplate restTemplate = new RestTemplate();
@@ -33,7 +38,7 @@ public class Yolp {
                 ResponseEntity<String> response_3 = restTemplate.getForEntity(
                                 baseUrl + "?appid=" + apiKey + "&device=mobile&lat=" + latitude + "&lon=" + longitude
                                                 + "&dist="
-                                                + radius + "&results=20&sort=rating&detail=string&gc=030&output=json3",
+                                                + radius + "&results=20&sort=rating&detail=string&gc=0303&output=json",
                                 // "&dist=10&results=20&sort=geo&detail=string&gc=0204001&gc=0302003&gc=0303&gc=0305"
                                 String.class);
 
@@ -64,6 +69,8 @@ public class Yolp {
                 String response4Body = response_4.getBody();
                 String response5Body = response_5.getBody();
                 String response6Body = response_6.getBody();
+                
+                ResponseBody responseBody = new ResponseBody(response1Body, response2Body, response3Body, response4Body, response5Body, response6Body);
                 System.out.println(response1Body);
                 System.out.println(response2Body);
                 System.out.println(response3Body);
@@ -71,10 +78,9 @@ public class Yolp {
                 System.out.println(response5Body);
                 System.out.println(response6Body);
                 System.out.println("範囲" + radius);
-                
-                return response1Body;
-                //String taglist = XmlParsing.xml(response1Body, response2Body, response3Body, response4Body, response5Body,
-                                //response6Body);
-                //return taglist;
+
+                List<YolpData> dataList = JsonParsingYolp.json(response1Body,response2Body,response3Body,response4Body,response5Body,response6Body);
+
+                return dataList;
         }
 }
