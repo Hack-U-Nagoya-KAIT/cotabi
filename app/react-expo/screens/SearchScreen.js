@@ -1,12 +1,51 @@
-import MaskedView from '@react-native-masked-view/masked-view';
+import axios from 'axios';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useState } from 'react';
-import { Button, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { TouchableOpacity, Modal,Button, StyleSheet, Text, View, ScrollView } from 'react-native';
+import MaskedView from '@react-native-masked-view/masked-view';
+
+const API_URL = "https://cotabi.ngrok.app/api/db/read/comp/1";
+
+
+
+
+
+
 
 const SearchScreen = ({ navigation, route }) => {
+  // dataステートを初期化。APIからのレスポンスデータを保存するためのステート
+  const [data, setData] = useState({});
   const { budget, timeRequired, concept } = route.params;
   const [showAlert, setShowAlert] = useState(false);
   const [showAbortAlert, setShowAbortAlert] = useState(false);
+
+  // コンポーネントがマウントされたときにデータのフェッチを実行
+  useEffect(() => {
+    // データのフェッチを行う非同期関数
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(API_URL);  // APIからデータを取得
+        setData(response.data);  // レスポンスデータをステートにセット
+      } catch (error) {
+        console.error("Error fetching the data:", error);  // エラー発生時はコンソールにエラー内容を表示
+      }
+    }
+
+    fetchData();  // fetchData関数を呼び出し
+  }, []);  // 依存配列は空にしているので、このuseEffectはコンポーネントがマウントされたときにのみ実行される
+
+
+
+
+
+
+
+
+// const SearchScreen = ({ navigation, route }) => {
+//   const { budget, timeRequired, concept } = route.params;
+//   const [showAlert, setShowAlert] = useState(false);
+//   const [showAbortAlert, setShowAbortAlert] = useState(false);
+
 
 
   const handleSavePlan = () => {
@@ -56,41 +95,12 @@ const SearchScreen = ({ navigation, route }) => {
         <Text>所要時間: {timeRequired}分</Text>
         <Text>コンセプト: {concept}</Text> */}
         <ScrollView style = {styles.outputScrollView} showsVerticalScrollIndicator = {true}>
+          <Text style={styles.outputText}>{JSON.stringify(data, null,2)}</Text>
+          <Text style={styles.outputText}>Companion ID: {data.companionId}</Text>
+          <Text style={styles.outputText}>Companion Title: {data.companionTitle}</Text>
+          <Text style={styles.outputText}>Design Num: {data.designNum}</Text>
           <Text style = {styles.outputText}>Hello, World! Nice to meet you! This is OutputText and ScrollView!</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
-          <Text style = {styles.outputText}>OutputText</Text>
+
         </ScrollView>
       </View>
       <View style = {[{flex:1}, {alignSelf:'stretch'}]}>  
