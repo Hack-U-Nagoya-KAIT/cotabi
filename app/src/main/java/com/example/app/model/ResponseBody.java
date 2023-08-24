@@ -7,16 +7,18 @@ public class ResponseBody {
     String response4Body;
     String response5Body;
     String response6Body;
+    String response7Body;
     // ... 同様に他の変数も定義
 
     public ResponseBody(String response1Body, String response2Body, String response3Body, String response4Body,
-            String response5Body, String response6Body) {
+            String response5Body, String response6Body, String response7Body) {
         this.response1Body = response1Body;
         this.response2Body = response2Body;
         this.response3Body = response3Body;
         this.response4Body = response4Body;
         this.response5Body = response5Body;
         this.response6Body = response6Body;
+        this.response7Body = response7Body;
     }
 
     public String getResponse1Body() {
@@ -67,5 +69,12 @@ public class ResponseBody {
         this.response6Body = response6Body;
     }
 
+    public String getResponse7Body() {
+        return response7Body;
+    }
+
+    public void setResponse7Body(String response7Body) {
+        this.response7Body = response7Body;
+    }
     
 }

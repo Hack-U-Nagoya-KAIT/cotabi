@@ -42,6 +42,9 @@ public class ContentNameParsing{
 
         // 最後のコンマとスペースを削除して表示
         String result = concatenatedNames.toString().replaceAll(", $", "");
+
+        // " を削除
+        result = result.replaceAll("\"", "");
         return result;
     }
 }

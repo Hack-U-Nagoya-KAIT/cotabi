@@ -63,14 +63,22 @@ public class Yolp {
                                 // "&dist=10&results=20&sort=geo&detail=string&gc=0204001&gc=0302003&gc=0303&gc=0305"
                                 String.class);
 
+                ResponseEntity<String> response_7 = restTemplate.getForEntity(
+                                baseUrl + "?appid=" + apiKey + "&device=mobile&lat=" + latitude + "&lon=" + longitude
+                                                + "&dist=5"
+                                                + radius + "results=10&sort=rating&detail=string&gc=01&output=json",
+                                // "&dist=10&results=20&sort=geo&detail=string&gc=0204001&gc=0302003&gc=0303&gc=0305"
+                                String.class);
+
                 String response1Body = response_1.getBody();
                 String response2Body = response_2.getBody();
                 String response3Body = response_3.getBody();
                 String response4Body = response_4.getBody();
                 String response5Body = response_5.getBody();
                 String response6Body = response_6.getBody();
+                String response7Body = response_7.getBody();
                 
-                ResponseBody responseBody = new ResponseBody(response1Body, response2Body, response3Body, response4Body, response5Body, response6Body);
+                ResponseBody responseBody = new ResponseBody(response1Body, response2Body, response3Body, response4Body, response5Body, response6Body,response7Body);
                 System.out.println(response1Body);
                 System.out.println(response2Body);
                 System.out.println(response3Body);
@@ -79,7 +87,7 @@ public class Yolp {
                 System.out.println(response6Body);
                 System.out.println("範囲" + radius);
 
-                List<YolpData> dataList = JsonParsingYolp.json(response1Body,response2Body,response3Body,response4Body,response5Body,response6Body);
+                List<YolpData> dataList = JsonParsingYolp.json(response1Body,response2Body,response3Body,response4Body,response5Body,response6Body,response7Body);
 
                 return dataList;
         }

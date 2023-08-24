@@ -54,7 +54,7 @@ public class LocationController {
             System.out.println(content);
             String result = ContentNameParsing.NameParsing(dataList,content);
             System.out.println(result);
-            String spot = RandomName.random();
+            String spot = RandomName.random(result);
             System.out.println(spot);
 
 
