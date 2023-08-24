@@ -4,7 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, Modal,Button, StyleSheet, Text, View, ScrollView } from 'react-native';
 import MaskedView from '@react-native-masked-view/masked-view';
 
-const API_URL = "https://cotabi.ngrok.app/api/db/read/comp/1";
+const API_URL_COMP = "https://cotabi.ngrok.app/api/db/read/comp/1";
+const API_URL_SPOT = "https://cotabi.ngrok.app/api/db/read/spot/1";
 
 
 
@@ -13,30 +14,28 @@ const API_URL = "https://cotabi.ngrok.app/api/db/read/comp/1";
 
 
 const SearchScreen = ({ navigation, route }) => {
-  // dataステートを初期化。APIからのレスポンスデータを保存するためのステート
-  const [data, setData] = useState({});
+  const [companionData, setData_comp] = useState({});
+  const [spotData, setData] = useState([]);
+  
   const { budget, timeRequired, concept } = route.params;
   const [showAlert, setShowAlert] = useState(false);
   const [showAbortAlert, setShowAbortAlert] = useState(false);
 
-  // コンポーネントがマウントされたときにデータのフェッチを実行
   useEffect(() => {
-    // データのフェッチを行う非同期関数
     const fetchData = async () => {
       try {
-        const response = await axios.get(API_URL);  // APIからデータを取得
-        setData(response.data);  // レスポンスデータをステートにセット
+        const response = await axios.get(API_URL_COMP);  
+        setData_comp(response.data);  // 'response.data' を追加し、正しいプロパティを参照
+
+        const response_spot = await axios.get(API_URL_SPOT);  
+        setData(response_spot.data);  // 'response.data' を追加。spotDataがAPIのルートにある場合はこれで良いですが、プロパティ名を変更する必要があるかもしれません。
       } catch (error) {
-        console.error("Error fetching the data:", error);  // エラー発生時はコンソールにエラー内容を表示
+        console.error("Error fetching the data:", error);
       }
     }
 
-    fetchData();  // fetchData関数を呼び出し
-  }, []);  // 依存配列は空にしているので、このuseEffectはコンポーネントがマウントされたときにのみ実行される
-
-
-
-
+    fetchData();
+  }, []);
 
 
 
@@ -90,18 +89,29 @@ const SearchScreen = ({ navigation, route }) => {
   return (
     <View style={styles.container} >
       <View style = {[{flex:2}, {alignSelf:'stretch'}]}>
-        {/* <Text>検索結果</Text>
-        <Text>予算: {budget}円</Text>
-        <Text>所要時間: {timeRequired}分</Text>
-        <Text>コンセプト: {concept}</Text> */}
-        <ScrollView style = {styles.outputScrollView} showsVerticalScrollIndicator = {true}>
-          <Text style={styles.outputText}>{JSON.stringify(data, null,2)}</Text>
-          <Text style={styles.outputText}>Companion ID: {data.companionId}</Text>
-          <Text style={styles.outputText}>Companion Title: {data.companionTitle}</Text>
-          <Text style={styles.outputText}>Design Num: {data.designNum}</Text>
-          <Text style = {styles.outputText}>Hello, World! Nice to meet you! This is OutputText and ScrollView!</Text>
+      <ScrollView style={styles.outputScrollView} showsVerticalScrollIndicator={true}>
+  {/* Array response handling - スポットの情報をリストとして表示 */}
+  {spotData && spotData.map((spot, index) => (
+    <View key={index}>
+      <Text style={styles.outputText}>Spot ID: {spot.spotId}</Text>
+      <Text style={styles.outputText}>Spot Name: {spot.spotName}</Text>
+      <Text style={styles.outputText}>Spot Lon: {spot.spotLon}</Text>
+      <Text style={styles.outputText}>Spot Lat: {spot.spotLat}</Text>
+      {spot.spotUrl && <Text style={styles.outputText}>Spot URL: {spot.spotUrl}</Text>}
+    </View>
+  ))}
 
-        </ScrollView>
+  {/* Object response handling - Companionの情報を表示 */}
+  {companionData && (
+    <>
+      <Text style={styles.outputText}>Companion ID: {companionData.companionId}</Text>
+      <Text style={styles.outputText}>Companion Title: {companionData.companionTitle}</Text>
+      <Text style={styles.outputText}>Design Num: {companionData.designNum}</Text>
+      <Text style={styles.outputText}>Test Text</Text>
+    </>
+  )}
+</ScrollView>
+
       </View>
       <View style = {[{flex:1}, {alignSelf:'stretch'}]}>  
         <TouchableOpacity title="しおりを保存" style = {[styles.primaryButtonLayout, styles.buttonShadow]}
