@@ -1,7 +1,7 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Location from 'expo-location';
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native';
+import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 const PromptScreen = ({ navigation }) => {
   const [budget, setBudget] = useState('');
@@ -14,7 +14,7 @@ const PromptScreen = ({ navigation }) => {
     const timeRequired = parseInt(hours) * 60 + parseInt(minutes);
 
     try {
-      let response = await fetch('https://cotabi.ngrok.app/api/location', {
+      let response = await fetch('https://ac04-182-21-98-168.ngrok-free.app/api/location', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
