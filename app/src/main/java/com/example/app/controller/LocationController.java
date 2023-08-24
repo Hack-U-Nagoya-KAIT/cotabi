@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.app.SetDistance.SetDistance;
 import com.example.app.model.LocationRequest;
 import com.example.app.service.Yolp;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 @RestController
 public class LocationController {
     @RequestMapping("/api")
@@ -15,7 +17,7 @@ public class LocationController {
         return "Hello World"; // 追加
     } // 追加
     @PostMapping("/api/location")
-    public String postLocation(@RequestBody LocationRequest request) {
+    public String postLocation(@RequestBody LocationRequest request) throws JsonMappingException, JsonProcessingException{
         double latitude = request.getLatitude();
         double longitude = request.getLongitude();
         //int time = request.getTime();
@@ -29,8 +31,11 @@ public class LocationController {
         double distance = setDistance.GenerateDistance(budget);
 
         // ここで必要な処理を行う（データベースへの保存など）
-        Yolp.getYolpData(latitude , longitude , distance);
-
+        String taglist= Yolp.getYolpData(latitude , longitude , distance);
+        
+        // String json=ChatGptServiceTag.generateTravelSuggestion(taglist);
+        // System.out.println(json);
+        // String content = JsonParsing.json(json);
         return "位置情報が受信されました。"+latitude+" "+longitude;
     }
 }
