@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_1" data-name="レイヤー 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1001 1001">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #efe8df;
+        stroke: #231815;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        fill: #231815;
+        filter: url(#drop-shadow-1);
+        font-family: SourceSerifRoman-Regular, 'Source Serif Variable';
+        font-size: 300px;
+        font-variation-settings: 'wght' 400;
+        letter-spacing: .05em;
+      }
+    </style>
+    <filter id="drop-shadow-1" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="11"/>
+      <feGaussianBlur result="blur" stdDeviation="8"/>
+      <feFlood flood-color="#231815" flood-opacity=".75"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect class="cls-1" x=".5" y=".5" width="1000" height="1000"/>
+  <text class="cls-2" transform="translate(43.61 575.5)"><tspan x="0" y="0">cotabi</tspan></text>
+</svg>
