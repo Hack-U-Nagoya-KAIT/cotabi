@@ -1,6 +1,7 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import MaskedView from '@react-native-masked-view/masked-view';
 
 const UserScreen = ({ navigation }) => {
   useEffect(() => {
@@ -12,45 +13,64 @@ const UserScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text>ユーザ画面</Text>
-      <TouchableOpacity
-        style={styles.customButton}
-        onPress={() => {
-          navigation.navigate('Prompt'); // PromptScreen に遷移する
-        }}
-      >
-        <LinearGradient
-          colors={['#022534', '#08546C', '#A0BACC']}
-          style={[styles.customButton, styles.createButton]}
+      {/* <Text>ユーザ画面</Text> */}
+      <View style = {{alignSelf:'stretch'}}>
+        <TouchableOpacity
+          style={[styles.primaryButtonLayout, styles.buttonShadow]}
+          onPress={() => {
+            navigation.navigate('Prompt'); // PromptScreen に遷移する
+          }}
         >
-          <Text style={styles.buttonText}>旅の作成</Text>
-        </LinearGradient>
-      </TouchableOpacity>
+          <LinearGradient
+            colors={['#022534', '#08546C', '#A0BACC']}
+            start={{x:0.0, y:0.5}}
+            end={{x:1.0, y:0.5}}
+            style={styles.primaryButton}
+          >
+            <Text style={styles.primaryButtonText}>旅の作成</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+      </View>
       <Text style={styles.description}>
         新しい旅のしおりを作成します
       </Text>
-
-      <TouchableOpacity
-        style={styles.customButton}
+      <View style =  {{margin:20,}} />
+      <TouchableOpacity 
+        style={[styles.secondaryButtonLayout, styles.buttonShadow]}
         onPress={() => {
           navigation.navigate('Current');
         }}
       >
         <LinearGradient
-          colors={['#022534', '#08546C', '#A0BACC']}
-          style={[styles.customButton, styles.createButton2]}
+          colors={['#022534', '#08546C', '#A0BACC']} 
+          start={{x:0.0, y:0.5}}
+          end={{x:1.0, y:0.5}}
+          style={{borderRadius: 33}}
         >
-        <View style={styles.innerButton}>
-          <Text style={styles.buttonText2}>現在のプラン</Text>
-        </View>
+          <View style = {styles.secondaryButton}>
+            <GradientText style={styles.secondaryButtonText}>現在のしおりを確認</GradientText>
+          </View>
         </LinearGradient>
       </TouchableOpacity>
       <Text style={styles.description}>
-        現在の旅のしおりを作成します
+        現在の旅のしおりを表示します
       </Text>
     </View>
   );
 };
+
+const GradientText = props => {
+  return (
+    <MaskedView maskElement={<Text {...props} />}>
+      <LinearGradient
+        colors={['#022534', '#08546C', '#A0BACC']} 
+        start={{x:0, y:0}}
+        end={{x:1, y:0}}>
+          <Text {...props} style={[props.style, {opacity: 0}]} />
+        </LinearGradient>
+    </MaskedView>
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -63,16 +83,6 @@ const styles = StyleSheet.create({
     borderRadius: 34,
     overflow: 'hidden', // 必要ならオーバーフローを制御
     marginBottom: 10,
-  },
-  createButton: {
-    width: 350, // ボタンの幅
-    height: 40, // ボタンの高さ
-    transform: [{ rotate: '0deg' }], // ボタンの回転
-  },
-  createButton2: {
-    width: 350, // ボタンの幅
-    height: 40, // ボタンの高さ
-    transform: [{ rotate: '0deg' }], // ボタンの回転
   },
   gradientBackground: {
     paddingHorizontal: 20,
@@ -96,21 +106,56 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-  buttonText: {
-    color: '#FFF', // 旅の作成ボタンのテキストの色
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  buttonText2: {
-    color: '#006881', // 現在のプランボタンのテキストの色
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
   description: {
-    marginTop: 10,
-    fontSize: 14,
+    margin:8,
+    fontSize: 16,
     textAlign: 'center',
   },
+  primaryButtonLayout: {
+    alignSelf:'stretch',
+    marginHorizontal:16,
+    marginVertical:8,
+    backgroundColor:"#E5DFD8",
+    borderRadius:33,
+  },
+  primaryButton: {
+    borderStyle:'solid',
+    borderColor:'#FFFFFF',
+    borderWidth:1,
+    borderRadius:33,
+  },
+  primaryButtonText: {
+    textAlign:'center',
+    margin:16,
+    color:'#FFFFFF',
+    fontSize:16,
+    fontWeight:'bold',
+  },
+  secondaryButtonLayout: {
+    alignSelf:'stretch',
+    marginHorizontal:16,
+    marginVertical:8,
+    backgroundColor:"#E5DFD8",
+    borderRadius:33,
+  },
+  secondaryButton: {
+    margin:2,
+    backgroundColor:"#ffffff",
+    borderRadius:33,
+  },
+  secondaryButtonText: {
+    textAlign:"center",
+    margin:16,
+    fontSize:16,
+    fontWeight:'bold'
+  },
+  buttonShadow: {
+    shadowColor:'#000',
+    shadowOffset:{width:2, height:2},
+    shadowOpacity:0.5,
+    shadowRadius: 2,
+  },
+
 });
 
 export default UserScreen;
