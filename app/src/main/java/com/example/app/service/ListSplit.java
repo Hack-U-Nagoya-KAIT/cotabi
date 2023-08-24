@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.example.app.model.YolpData;
+
+
 public class ListSplit {
     public static String Split(List<YolpData> dataList) {
 
@@ -13,11 +16,11 @@ public class ListSplit {
         StringBuilder tags = new StringBuilder();
 
         for (YolpData data : dataList) {
-            if (uniqueTags.add(data.tag)) { // タグがまだ追加されていなければ追加
+            if (uniqueTags.add(data.getTag())) { // タグがまだ追加されていなければ追加
                 if (tags.length() > 0) {
                     tags.append(", ");
                 }
-                tags.append(data.tag);
+                tags.append(data.getTag());
             }
         }
 

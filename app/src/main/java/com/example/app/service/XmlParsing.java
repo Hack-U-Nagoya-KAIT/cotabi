@@ -13,22 +13,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-class YolpData {
-    String name;
-    double lat;
-    double lon;
-    String tag;
-
-    public YolpData(String name, double lat, double lon, String tag) {
-        this.name = name;
-        this.lat = lat;
-        this.lon = lon;
-        this.tag = tag;
-    }
-}
+import com.example.app.model.YolpData;
 
 public class XmlParsing {
-    public static void xml(String... xmlDataArray) {
+    public static String xml(String... xmlDataArray) {
         List<YolpData> dataList = new ArrayList<>();
         for (String xmlData : xmlDataArray) {
 
@@ -74,13 +62,13 @@ public class XmlParsing {
         }
         // dataListの内容を表示
         for (YolpData data : dataList) {
-            System.out.println("Name: " + data.name);
-            System.out.println("lat: " + data.lat);
-            System.out.println("lon: " + data.lon);
-            System.out.println("tag: " + data.tag);
+            System.out.println("Name: " + data.getName());
+            System.out.println("lat: " + data.getLat());
+            System.out.println("lon: " + data.getLon());
+            System.out.println("tag: " + data.getTag());
         }
         String taglist=ListSplit.Split(dataList);
         System.out.println(taglist);
-        ChatGptService.generateTravelSuggestion(taglist);
+        return taglist;
     }
 }
