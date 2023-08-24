@@ -69,8 +69,8 @@ public class DataBaseController {
     //READ Companion TABLE DATA FROM FOREIGN KEY
     //戻り値 Companion型
     @GetMapping("/read/comp/{companionId}")
-    public Companion findCompanionById(Long companion_id) {
-        return service.readCompanions(companion_id);
+    public Companion findCompanionById(@PathVariable Long companionId) {
+        return service.readCompanions(companionId);
     }
 
     //READ CompanionSpot TABLE DATA FROM FOREIGN KEY
