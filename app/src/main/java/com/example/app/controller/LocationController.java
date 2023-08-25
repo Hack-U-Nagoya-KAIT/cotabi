@@ -87,6 +87,15 @@ public class LocationController {
 
 
 
+
+            //add data
+            HttpdbPost httpdbPost=new HttpdbPost();
+            Long id = httpdbPost.CC();
+            httpdbPost.cSpot(id, longitude, latitude);
+            httpdbPost.cRoutes(id, budget, distance);
+
+
+
             response.put("success", true);
             response.put("message", "位置情報とデータが正常に受信されました。");
             return ResponseEntity.ok(response);
