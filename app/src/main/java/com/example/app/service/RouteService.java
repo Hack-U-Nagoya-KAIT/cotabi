@@ -83,7 +83,7 @@ public class RouteService {
                 in.close();
                 return response.toString();
             } else {
-                System.out.println("Request failed with response code: " + responseCode);
+                System.out.println(responseCode);
             }
         } catch (IOException e) {
             e.printStackTrace();
