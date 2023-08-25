@@ -17,6 +17,7 @@ import com.example.app.model.RouteResponse;
 import com.example.app.model.YolpData;
 import com.example.app.service.ChatGptServiceTag;
 import com.example.app.service.ContentNameParsing;
+import com.example.app.service.HttpdbPost;
 import com.example.app.service.JsonParsing;
 import com.example.app.service.ListSplit;
 import com.example.app.service.OriginDestParsing;
@@ -41,7 +42,7 @@ public class LocationController {
         try {
             double latitude = request.getLatitude();
             double longitude = request.getLongitude();
-            int time = request.getTime();
+            // int time = request.getTime();
             int budget = request.getBudget();
             String concept = request.getConcept();
 
@@ -49,10 +50,12 @@ public class LocationController {
 
             double distance = setDistance.GenerateDistance(budget);
 
+            // Call Yolop
             // ここで必要な処理を行う（データベースへの保存など）
             List<YolpData> dataList= Yolp.getYolpData(latitude, longitude, distance);
             String taglist = ListSplit.Split(dataList);
             System.out.println(taglist);
+            // Call Gpt
             String json=ChatGptServiceTag.generateTravelSuggestion(taglist,concept);
             System.out.println(json);
             String content = JsonParsing.json(json);
@@ -72,6 +75,15 @@ public class LocationController {
             System.out.println(distdura.getDistance());
             System.out.println(distdura.getDuration());
             
+
+
+
+
+            //add data
+            HttpdbPost httpdbPost=new HttpdbPost();
+            Long id = httpdbPost.CC();
+            httpdbPost.cSpot(id, longitude, latitude);
+            httpdbPost.cRoutes(id, budget, distance);
 
 
 
