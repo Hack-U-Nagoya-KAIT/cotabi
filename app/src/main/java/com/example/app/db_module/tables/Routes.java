@@ -27,7 +27,7 @@ public class Routes {
         private double distance;
 
         @Column(name = "duration")
-        private double duration;
+        private int duration;
 
         public Long getRouteId() {
             return routeId;
@@ -53,11 +53,11 @@ public class Routes {
             this.distance = distance;
         }
 
-        public double getDuration() {
+        public int getDuration() {
             return duration;
         }
 
-        public void setDuration(double duration) {
+        public void setDuration(int duration) {
             this.duration = duration;
         }
 }

@@ -51,7 +51,7 @@ public class RouteService {
                     .put("languageCode", "ja-JP");
 
             // API Key and URL
-            String apiKey = "AIzaSyCBGAB2YLufqV3Q182Nz9PRBV6SY0yIEpY";
+            String apiKey = "";
             String apiUrl = "https://routes.googleapis.com/directions/v2:computeRoutes";
 
             // Create HTTP connection

@@ -8,14 +8,19 @@ import { Button, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } f
 const SearchScreen = ({ navigation, route }) => {
   const [companionData, setData_comp] = useState({});
   const [spotData, setData] = useState([]);
+  const [routeData, setData_route] = useState([]);
 
   const { budget, timeRequired, concept, id } = route.params;
   const [showAlert, setShowAlert] = useState(false);
   const [showAbortAlert, setShowAbortAlert] = useState(false);
+  const [currentTime, setCurrentTime] = useState('');
+  const [arrivalTime, setArrivalTime] = useState('');
 
-  let API_URL_COMP = "https://2bb7-202-250-70-9.ngrok-free.app/api/db/read/comp/"+id;
-  // API_URL_COMP = API_URL_COMP+id;
-  let API_URL_SPOT = "https://2bb7-202-250-70-9.ngrok-free.app/api/db/read/spot/"+id;
+  let API_URL_COMP = "https://2bb7-202-250-70-9.ngrok-free.app/api/db/read/comp/" + id;
+  
+  let API_URL_SPOT = "https://2bb7-202-250-70-9.ngrok-free.app/api/db/read/spot/" + id;
+
+  let API_URL_ROUTE = "https://2bb7-202-250-70-9.ngrok-free.app/api/db/read/routes/" + id;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,6 +31,10 @@ const SearchScreen = ({ navigation, route }) => {
 
         const response_spot = await axios.get(API_URL_SPOT);
         setData(response_spot.data);  // 'response.data' を追加。spotDataがAPIのルートにある場合はこれで良いですが、プロパティ名を変更する必要があるかもしれません。
+
+        const response_route = await axios.get(API_URL_ROUTE);
+        setData_route(response_route.data);
+
       } catch (error) {
         console.error("Error fetching the data:", error);
       }
@@ -33,6 +42,34 @@ const SearchScreen = ({ navigation, route }) => {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+
+    const getCurrentTime = () => {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      return `${hours}:${minutes}`;
+    };
+
+    const calculateArrivalTime = (duration) => {
+      const now = new Date();
+      const newTime = new Date(now.getTime() + duration * 60 * 1000); // 49分をミリ秒に変換
+      const hours = newTime.getHours().toString().padStart(2, '0');
+      const minutes = newTime.getMinutes().toString().padStart(2, '0');
+      return `${hours}:${minutes}`;
+    }
+    
+    setCurrentTime(getCurrentTime());
+    // コンポーネントがレンダリングされるたびに ArrivalTime を計算してセット
+    const calculatedArrivalTime = calculateArrivalTime(routeData.duration);
+    setArrivalTime(calculatedArrivalTime);
+
+    if (routeData.length > 0) {
+      const calculatedArrivalTime = calculateArrivalTime(routeData[0].duration);
+      setArrivalTime(calculatedArrivalTime);
+    }
+  }, [routeData]);
 
 
 
@@ -88,42 +125,39 @@ const SearchScreen = ({ navigation, route }) => {
       <View style={[{ flex: 2 }, { alignSelf: 'stretch' }]}>
         <ScrollView style={styles.outputScrollView} showsVerticalScrollIndicator={true}>
           <Text style={styles.title}>cotabi</Text>
-          {/* <Text style={styles.goal}>鶴岡八幡宮</Text>
-          <Text style={styles.address}>鎌倉市雪ノ下２丁目1番31号</Text>
-          <Text style={styles.route}>経路</Text>
-
-          <Text style={styles.movetool}>12:50：現在地</Text>
-          <Text style={styles.movetoolmin}>移動手段：車</Text>
-          <Text style={styles.movetoolmin}>移動時間：73分</Text>
-          <Text style={styles.movetoolmin}>交通費：0円</Text>
-          <Text style={styles.movetool}>14:03：鶴岡八幡宮</Text> */}
-
+          
           {spotData && spotData.map((spot, index) => (
             <View key={index}>
-              <Text style={styles.title}>Spot ID: {spot.spotId}</Text>
+              {/* <Text style={styles.title}>Spot ID: {spot.spotId}</Text> */}
               <Text style={styles.goal}>{spot.spotName}</Text>
-              <Text style={styles.address}>Spot address{spot.spotaddress}</Text>
-
-              <Text style={styles.movetool}>12:50：現在地</Text>
-              <Text style={styles.movetoolmin}>移動手段：車</Text>
-              <Text style={styles.movetoolmin}>移動時間：73分</Text>
-              <Text style={styles.movetoolmin}>交通費：0円</Text>
-              <Text style={styles.movetool}>14:03：{spot.spotaddress}鶴岡八幡宮</Text>
-
+              <Text style={styles.address}>{spot.spotAddress}</Text>
 
             </View>
           ))}
 
+          {routeData && routeData.map((route, index) => (
+            <View key={index}>
+              <Text style={styles.movetool}>{currentTime}：現在地</Text>
+              <Text style={styles.movetoolmin}>移動手段：車</Text>
+              <Text style={styles.movetoolmin}>移動時間：{route.duration}分</Text>
+              <Text style={styles.movetoolmin}>交通費：0円</Text>
+            </View>
+          ))}
 
-          {companionData && (
+          {spotData && spotData.map((spot, index) => (
+            <View key={index}>
+              <Text style={styles.movetool}>{arrivalTime}：{spot.spotName}</Text>
+            </View>
+          ))}
+
+          {/* {companionData && (
             <>
               <Text style={styles.outputText}>Companion ID: {companionData.companionId}</Text>
-              <Text style={styles.outputText}>Companion Title: {companionData.companionTitle}</Text>
               <Text style={styles.outputText}>Design Num: {companionData.designNum}</Text>
               <Text style={styles.outputText}>Test Text</Text>
             </>
           )
-          }
+          } */}
         </ScrollView>
 
       </View>

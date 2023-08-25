@@ -19,7 +19,7 @@ public class RoutesParsing {
             
             String duration = routeNode.get("duration").asText();
             String numberStr = duration.replaceAll("\\D+", ""); // 正規表現で数字以外の文字を削除
-            distdura.setDuration(Double.parseDouble(numberStr)/60); // 数字文字列を整数に変換
+            distdura.setDuration(Integer.parseInt(numberStr)/60); // 数字文字列を整数に変換
 
             return distdura;
         } catch (Exception e) {
