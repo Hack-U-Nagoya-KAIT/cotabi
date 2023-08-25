@@ -5,7 +5,7 @@ public class RouteRequest {
     private double originLng;
     private double destLat;
     private double destLng;
-
+    private String address;
     // getters, setters
     public double getOriginLat() {
         return originLat;
@@ -30,5 +30,11 @@ public class RouteRequest {
     }
     public void setDestLng(double destLng) {
         this.destLng = destLng;
+    }
+    public String getAddress(){
+        return address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

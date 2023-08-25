@@ -25,8 +25,8 @@ public class CompanionSpot {
     @JsonBackReference
     private Companion companion;
 
-    @Column(name = "spotUrl" , length = 256)
-    private String spotUrl;
+    @Column(name = "spotAddress" , length = 256)
+    private String spotAddress;
 
     @Column(name = "spotLon" , nullable = false)
     private float spotLon;
@@ -54,14 +54,6 @@ public class CompanionSpot {
         this.companion = companion;
     }
 
-    public String getSpotUrl() {
-        return spotUrl;
-    }
-
-    public void setSpotUrl(String spotUrl) {
-        this.spotUrl = spotUrl;
-    }
-
     public float getSpotLon() {
         return spotLon;
     }
@@ -85,4 +77,13 @@ public class CompanionSpot {
     public void setSpotName(String spotName) {
         this.spotName = spotName;
     }
+
+    public String getSpotAddress() {
+        return spotAddress;
+    }
+
+    public void setSpotAddress(String spotAddress) {
+        this.spotAddress = spotAddress;
+    }
+
 }

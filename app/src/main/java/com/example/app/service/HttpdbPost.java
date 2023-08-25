@@ -46,15 +46,16 @@ public class HttpdbPost {
         // }
 
 
-    public void cSpot(Long id, double lon, double lat, String name) {
+    public void cSpot(Long id, double lon, double lat, String name, String address) {
         RestTemplate restTemplate = new RestTemplate();
 
         String url = "http://localhost:8080/api/db/create/spot";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        System.out.println(address);
 
         String requestBody = "{\"companion\":{\"companionId\":\"" + id + "\"},\"spotLon\":\"" + lon
-                + "\",\"spotLat\":\"" + lat + "\",\"spotName\":\""+name+"\"}";
+                + "\",\"spotLat\":\"" + lat + "\",\"spotName\":\""+name+"\",\"spotAddress\":\""+address+"\"}";
 
         ResponseEntity<String> response = restTemplate.postForEntity(url, new HttpEntity<>(requestBody, headers),
                 String.class);

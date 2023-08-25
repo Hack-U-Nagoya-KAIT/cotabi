@@ -45,6 +45,7 @@ public class LocationController {
             // int time = request.getTime();
             int budget = request.getBudget();
             String concept = request.getConcept();
+            
 
             SetDistance setDistance = new SetDistance();
 
@@ -79,7 +80,7 @@ public class LocationController {
             //add data
             HttpdbPost httpdbPost=new HttpdbPost();
             Long id = httpdbPost.CC();
-            httpdbPost.cSpot(id, origindest.getDestLng(), origindest.getDestLat(), spot);
+            httpdbPost.cSpot(id, origindest.getDestLng(), origindest.getDestLat(), spot, origindest.getAddress());
             httpdbPost.cRoutes(id,distdura.getDistance(),distdura.getDuration());
 
             response.put("success", true);
