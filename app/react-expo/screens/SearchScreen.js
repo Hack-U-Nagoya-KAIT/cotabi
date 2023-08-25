@@ -90,7 +90,17 @@ const SearchScreen = ({ navigation, route }) => {
     <View style={styles.container} >
       <View style = {[{flex:2}, {alignSelf:'stretch'}]}>
       <ScrollView style={styles.outputScrollView} showsVerticalScrollIndicator={true}>
-  {/* Array response handling - スポットの情報をリストとして表示 */}
+      <Text style={styles.title}>cotabi</Text>
+      <Text style={styles.goal}>鶴岡八幡宮</Text>
+      <Text style={styles.address}>鎌倉市雪ノ下２丁目1番31号</Text>
+      <Text style={styles.route}>経路</Text>
+
+      <Text style={styles.movetool}>12:50：現在地</Text>
+      <Text style={styles.movetoolmin}>移動手段：車</Text>
+      <Text style={styles.movetoolmin}>移動時間：73分</Text>
+      <Text style={styles.movetoolmin}>交通費：0円</Text>
+      <Text style={styles.movetool}>14:03：鶴岡八幡宮</Text>
+{/* 
   {spotData && spotData.map((spot, index) => (
     <View key={index}>
       <Text style={styles.outputText}>Spot ID: {spot.spotId}</Text>
@@ -101,7 +111,7 @@ const SearchScreen = ({ navigation, route }) => {
     </View>
   ))}
 
-  {/* Object response handling - Companionの情報を表示 */}
+  
   {companionData && (
     <>
       <Text style={styles.outputText}>Companion ID: {companionData.companionId}</Text>
@@ -109,7 +119,8 @@ const SearchScreen = ({ navigation, route }) => {
       <Text style={styles.outputText}>Design Num: {companionData.designNum}</Text>
       <Text style={styles.outputText}>Test Text</Text>
     </>
-  )}
+  )} */
+  }
 </ScrollView>
 
       </View>
@@ -349,6 +360,53 @@ const styles = StyleSheet.create({
   cancelButton: {
     backgroundColor: '#A0BACC', // キャンセルボタンの色
   },
+
+
+
+
+  title:{
+    fontSize:24,
+    fontWeight:'regular',
+    fontFamily:'Hiragino Mincho ProN',
+    color:"#999999",
+    marginBottom:8,
+    marginLeft:4,
+  },
+  goal:{
+    fontSize:48,
+    fontWeight:'bold',
+    color:"#333333",
+    marginLeft:24,
+  },
+  address:{
+    fontSize:16,
+    fontWeight:'regular',
+    color:'#444444',
+    marginTop:8,
+    marginLeft:28,
+  },
+  route:{
+    fontSize:28,
+    fontWeight:'bold',
+    color:"#333333",
+    marginTop:24,
+    marginLeft:28,
+  },
+  movetool:{
+    fontSize:24,
+    fontWeight:'regular',
+    color:"#333333",
+    marginTop:16,
+    marginLeft:32,
+  },
+  movetoolmin:{
+    fontSize:16,
+    fontWeight:'regular',
+    color:"#333333",
+    marginTop:16,
+    marginLeft:58,
+  },
+
 });
 
 export default SearchScreen;
