@@ -14,7 +14,7 @@ const PromptScreen = ({ navigation }) => {
     const timeRequired = parseInt(hours) * 60 + parseInt(minutes);
 
     try {
-      let response = await fetch('https://cotabi.ngrok.app/api/location', {
+      let response = await fetch('https://68df-182-21-98-168.ngrok-free.app/api/location', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -36,13 +36,14 @@ const PromptScreen = ({ navigation }) => {
           budget: budget,
           timeRequired: timeRequired,
           concept: concept,
+          id: jsonResponse.id // jsonResponseの中からidフィールドの値を取得して渡す
         });
       } else {
-        Alert.alert("Error", "Failed to post data to the server.");
+        Alert.alert("エラー", "サーバーへのデータ送信に失敗しました。");
       }
     } catch (error) {
       console.error(error);
-      Alert.alert("Error", "An error occurred while communicating with the server.");
+      Alert.alert("エラー", "サーバーとの通信中にエラーが発生しました。");
     }
   };
 

@@ -21,7 +21,6 @@ public class HttpdbPost {
         String requestBody = "{\"designNum\":\"777\"}";
 
         ResponseEntity<String> response = restTemplate.postForEntity(url, new HttpEntity<>(requestBody, headers), String.class);
-        System.out.println("あああ");
         return Long.parseLong(response.getBody());
         }
         // if (response.getStatusCode().is2xxSuccessful()) {
@@ -68,7 +67,7 @@ public class HttpdbPost {
         }
     }
 
-    public void cRoutes(Long id, double distance, double duration) {
+    public void cRoutes(Long id, double distance, int duration) {
         RestTemplate restTemplate = new RestTemplate();
 
         String url = "http://localhost:8080/api/db/create/Route";

@@ -2,7 +2,7 @@ package com.example.app.model;
 
 public class RouteResponse {
     private double distance;
-    private double duration;
+    private int duration;
     
     // getters, setters
     public double getDistance() {
@@ -11,10 +11,10 @@ public class RouteResponse {
     public void setDistance(double d) {
         this.distance = d;
     }
-    public double getDuration() {
+    public int getDuration() {
         return duration;
     }
-    public void setDuration(double duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 }

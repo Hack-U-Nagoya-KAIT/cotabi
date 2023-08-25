@@ -112,7 +112,7 @@ public class DataBaseController {
     //READ Routes TABLE DATA FROM FOREIGN KEY
     //戻り値 List<Companion>型
     @GetMapping("/read/routes/{companionId}")
-    public List<Routes> findRoutesById(@PathVariable Long companion_id) {
-        return service.readRoutes(companion_id);
+    public List<Routes> findRoutesById(@PathVariable Long companionId) {
+        return service.readRoutes(companionId);
     }
 }

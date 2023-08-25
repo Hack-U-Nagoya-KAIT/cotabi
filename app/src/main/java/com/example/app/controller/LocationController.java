@@ -85,6 +85,7 @@ public class LocationController {
 
             response.put("success", true);
             response.put("message", "位置情報とデータが正常に受信されました。");
+            response.put("id",id);
             return ResponseEntity.ok(response);
 
         } catch (Exception e) {
