@@ -35,7 +35,7 @@ public class RouteService {
 
             JSONObject destinationLatLng = new JSONObject()
                     .put("latitude", routeRequest.getDestLat())
-                    .put("longitude", routeRequest.getOriginLng());
+                    .put("longitude", routeRequest.getDestLng());
 
             JSONObject destinationLocation = new JSONObject()
                     .put("latLng", destinationLatLng);
@@ -81,8 +81,6 @@ public class RouteService {
                     response.append(inputLine);
                 }
                 in.close();
-                System.out.println("Response:");
-                System.out.println(response.toString());
                 return response.toString();
             } else {
                 System.out.println("Request failed with response code: " + responseCode);
