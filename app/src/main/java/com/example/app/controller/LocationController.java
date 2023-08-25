@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.app.SetDistance.SetDistance;
 import com.example.app.model.LocationRequest;
 import com.example.app.model.RouteRequest;
+import com.example.app.model.RouteResponse;
 import com.example.app.model.YolpData;
 import com.example.app.service.ChatGptServiceTag;
 import com.example.app.service.ContentNameParsing;
@@ -60,14 +61,16 @@ public class LocationController {
             System.out.println(result);
             String spot = RandomName.random(result);
             System.out.println(spot);
-            RouteRequest dest = OriginDestParsing.Parsing(dataList,spot,latitude,longitude);
-            System.out.println(dest.getDestLat());
-            System.out.println(dest.getDestLng());
-            System.out.println(dest.getOriginLat());
-            System.out.println(dest.getOriginLng());
-            String route = RouteService.RoutesAPI(dest);
+            RouteRequest origindest = OriginDestParsing.Parsing(dataList,spot,latitude,longitude);
+            System.out.println(origindest.getDestLat());
+            System.out.println(origindest.getDestLng());
+            System.out.println(origindest.getOriginLat());
+            System.out.println(origindest.getOriginLng());
+            String route = RouteService.RoutesAPI(origindest);
             System.out.println(route);
-            RoutesParsing.Parsing(route);
+            RouteResponse distdura = RoutesParsing.Parsing(route);
+            System.out.println(distdura.getDistance());
+            System.out.println(distdura.getDuration());
             
 
 

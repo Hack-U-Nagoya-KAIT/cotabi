@@ -14,7 +14,7 @@ const PromptScreen = ({ navigation }) => {
     const timeRequired = parseInt(hours) * 60 + parseInt(minutes);
 
     try {
-      let response = await fetch('https://782f-202-250-70-11.ngrok-free.app/api/location', {
+      let response = await fetch('https://4ae5-202-250-70-11.ngrok-free.app/api/location', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
