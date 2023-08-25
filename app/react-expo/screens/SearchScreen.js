@@ -16,11 +16,11 @@ const SearchScreen = ({ navigation, route }) => {
   const [currentTime, setCurrentTime] = useState('');
   const [arrivalTime, setArrivalTime] = useState('');
 
-  let API_URL_COMP = "https://2bb7-202-250-70-9.ngrok-free.app/api/db/read/comp/" + id;
+  let API_URL_COMP = "https://68df-182-21-98-168.ngrok-free.app/api/db/read/comp/" + id;
   
-  let API_URL_SPOT = "https://2bb7-202-250-70-9.ngrok-free.app/api/db/read/spot/" + id;
+  let API_URL_SPOT = "https://68df-182-21-98-168.ngrok-free.app/api/db/read/spot/" + id;
 
-  let API_URL_ROUTE = "https://2bb7-202-250-70-9.ngrok-free.app/api/db/read/routes/" + id;
+  let API_URL_ROUTE = "https://68df-182-21-98-168.ngrok-free.app/api/db/read/routes/" + id;
 
   useEffect(() => {
     const fetchData = async () => {

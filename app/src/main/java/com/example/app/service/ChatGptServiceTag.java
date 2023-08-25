@@ -16,7 +16,7 @@ public class ChatGptServiceTag {
         String dataList = taglist;
         //String dataList = "水族館,遊園地,ラーメン屋,イタリアンレストラン";
         String apiKey = "";//ここにapiKeyを入れて
-        String prompt = "以下のデータリストを元に、コンセプト:" + concept + "に沿った、データを3つ選びをjson形式でデータリストと同じく,で区切りで返して下さい。余計な文はいりません。\n" + dataList;
+        String prompt = "以下の注意とデータリストを元に、コンセプト:" + concept + "に沿ったデータを選んでください。\n 注意:\n- データリストから3つ選ぶ\n- ','でデータを区切る\n- 余計な文をつけない\n- \"\u30C7\u30D1\u30FC\u30C8,\u30C6\u30FC\u30DE\u30D1\u30FC\u30AF,\u30D3\u30EA\u30E4\u30FC\u30C9\"形式で出力\nデータリスト：" + dataList;
         String chatGptApiEndpoint = "https://api.openai.com/v1/chat/completions";
 
         HttpHeaders headers = new HttpHeaders();
