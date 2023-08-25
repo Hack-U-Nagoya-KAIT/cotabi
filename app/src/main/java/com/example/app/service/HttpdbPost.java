@@ -46,7 +46,7 @@ public class HttpdbPost {
         // }
 
 
-    public void cSpot(Long id, double lon, double lat) {
+    public void cSpot(Long id, double lon, double lat, String name) {
         RestTemplate restTemplate = new RestTemplate();
 
         String url = "http://localhost:8080/api/db/create/spot";
@@ -54,7 +54,7 @@ public class HttpdbPost {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         String requestBody = "{\"companion\":{\"companionId\":\"" + id + "\"},\"spotLon\":\"" + lon
-                + "\",\"spotLat\":\"" + lat + "\"}";
+                + "\",\"spotLat\":\"" + lat + "\",\"spotName\":\""+name+"\"}";
 
         ResponseEntity<String> response = restTemplate.postForEntity(url, new HttpEntity<>(requestBody, headers),
                 String.class);
@@ -67,7 +67,7 @@ public class HttpdbPost {
         }
     }
 
-    public void cRoutes(Long id, int distance, double duration) {
+    public void cRoutes(Long id, double distance, double duration) {
         RestTemplate restTemplate = new RestTemplate();
 
         String url = "http://localhost:8080/api/db/create/Route";

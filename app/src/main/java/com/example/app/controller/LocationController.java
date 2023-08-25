@@ -74,27 +74,13 @@ public class LocationController {
             RouteResponse distdura = RoutesParsing.Parsing(route);
             System.out.println(distdura.getDistance());
             System.out.println(distdura.getDuration());
-            
-
-
-
+        
 
             //add data
             HttpdbPost httpdbPost=new HttpdbPost();
             Long id = httpdbPost.CC();
-            httpdbPost.cSpot(id, longitude, latitude);
-            httpdbPost.cRoutes(id, budget, distance);
-
-
-
-
-            //add data
-            HttpdbPost httpdbPost=new HttpdbPost();
-            Long id = httpdbPost.CC();
-            httpdbPost.cSpot(id, longitude, latitude);
-            httpdbPost.cRoutes(id, budget, distance);
-
-
+            httpdbPost.cSpot(id, origindest.getDestLng(), origindest.getDestLat(), spot);
+            httpdbPost.cRoutes(id,distdura.getDistance(),distdura.getDuration());
 
             response.put("success", true);
             response.put("message", "位置情報とデータが正常に受信されました。");

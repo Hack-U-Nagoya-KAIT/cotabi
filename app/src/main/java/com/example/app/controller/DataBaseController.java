@@ -68,7 +68,7 @@ public class DataBaseController {
 
     //CREATE NEW DATA FOR Routes TABLE
     //戻り値 boolean型true/false
-    @PostMapping("/create/toutes")
+    @PostMapping("/create/Route")
     public boolean createRoutes(@RequestBody Routes routes) {
         return service.createRoutes(routes);
     }

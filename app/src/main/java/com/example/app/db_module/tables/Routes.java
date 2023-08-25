@@ -24,10 +24,10 @@ public class Routes {
         private Companion companion;
 
         @Column(name = "distance")
-        private int distance;
+        private double distance;
 
         @Column(name = "duration")
-        private int duration;
+        private double duration;
 
         public Long getRouteId() {
             return routeId;
@@ -45,19 +45,19 @@ public class Routes {
             this.companion = companion;
         }
 
-        public int getDistance() {
+        public double getDistance() {
             return distance;
         }
 
-        public void setDistance(int distance) {
+        public void setDistance(double distance) {
             this.distance = distance;
         }
 
-        public int getDuration() {
+        public double getDuration() {
             return duration;
         }
 
-        public void setDuration(int duration) {
+        public void setDuration(double duration) {
             this.duration = duration;
         }
 }
