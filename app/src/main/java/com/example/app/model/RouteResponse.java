@@ -17,5 +17,4 @@ public class RouteResponse {
     public void setDuration(double duration) {
         this.duration = duration;
     }
-
 }
