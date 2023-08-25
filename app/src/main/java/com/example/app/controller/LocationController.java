@@ -12,12 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.app.SetDistance.SetDistance;
 import com.example.app.model.LocationRequest;
+import com.example.app.model.RouteRequest;
 import com.example.app.model.YolpData;
 import com.example.app.service.ChatGptServiceTag;
 import com.example.app.service.ContentNameParsing;
 import com.example.app.service.JsonParsing;
 import com.example.app.service.ListSplit;
+import com.example.app.service.OriginDestParsing;
 import com.example.app.service.RandomName;
+import com.example.app.service.RouteService;
+import com.example.app.service.RoutesParsing;
 import com.example.app.service.Yolp;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -56,6 +60,15 @@ public class LocationController {
             System.out.println(result);
             String spot = RandomName.random(result);
             System.out.println(spot);
+            RouteRequest dest = OriginDestParsing.Parsing(dataList,spot,latitude,longitude);
+            System.out.println(dest.getDestLat());
+            System.out.println(dest.getDestLng());
+            System.out.println(dest.getOriginLat());
+            System.out.println(dest.getOriginLng());
+            String route = RouteService.RoutesAPI(dest);
+            System.out.println(route);
+            RoutesParsing.Parsing(route);
+            
 
 
 
