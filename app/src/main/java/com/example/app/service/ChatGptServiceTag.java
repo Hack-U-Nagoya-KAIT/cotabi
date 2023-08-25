@@ -15,7 +15,7 @@ public class ChatGptServiceTag {
         String model = "gpt-3.5-turbo";
         String dataList = taglist;
         //String dataList = "水族館,遊園地,ラーメン屋,イタリアンレストラン";
-        String apiKey = "";//ここにapiKeyを入れて
+        String apiKey = "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";//ここにapiKeyを入れて
         String prompt = "以下のデータリストを元に、コンセプト:" + concept + "に沿った、データを3つ選びをjson形式でデータリストと同じく,で区切りで返して下さい。余計な文はいりません。\n" + dataList;
         String chatGptApiEndpoint = "https://api.openai.com/v1/chat/completions";
 
