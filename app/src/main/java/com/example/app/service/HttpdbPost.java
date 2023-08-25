@@ -46,7 +46,7 @@ public class HttpdbPost {
         // }
 
 
-    public void cSpot(Long id, double lon, double lat, String name) {
+    public void cSpot(Long id, double lon, double lat, String name, String address) {
         RestTemplate restTemplate = new RestTemplate();
 
         String url = "http://localhost:8080/api/db/create/spot";
