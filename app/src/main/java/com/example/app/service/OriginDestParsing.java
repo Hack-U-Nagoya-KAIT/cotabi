@@ -18,6 +18,7 @@ public class OriginDestParsing {
             if (data.getName().equals(spot)) {
                 dest.setDestLat(data.getLat());
                 dest.setDestLng(data.getLon());
+                dest.setAddress(data.getAddress());
             }
         }
         return dest;
