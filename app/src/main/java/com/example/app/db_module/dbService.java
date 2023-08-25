@@ -9,11 +9,13 @@ import com.example.app.db_module.db_interface.CompanionRepo;
 import com.example.app.db_module.db_interface.CompanionSpotRepo;
 import com.example.app.db_module.db_interface.CompanionStampRepo;
 import com.example.app.db_module.db_interface.InsertImageRepo;
+import com.example.app.db_module.db_interface.RoutesRepo;
 import com.example.app.db_module.db_interface.TransportationRepo;
 import com.example.app.db_module.tables.Companion;
 import com.example.app.db_module.tables.CompanionSpot;
 import com.example.app.db_module.tables.CompanionStamp;
 import com.example.app.db_module.tables.InsertImage;
+import com.example.app.db_module.tables.Routes;
 import com.example.app.db_module.tables.Transportation;
 
 @Service
@@ -25,28 +27,30 @@ public class dbService {
     private CompanionStampRepo companionStampRepo;
     private InsertImageRepo insertImageRepo;
     private TransportationRepo transportationRepo;
+    private RoutesRepo routesRepo;
 
     @Autowired
     public dbService(CompanionRepo companionRepo,CompanionSpotRepo companionSpotRepo
         ,CompanionStampRepo companionStampRepo,InsertImageRepo insertImageRepo
-        ,TransportationRepo transportationRepo) {
+        ,TransportationRepo transportationRepo,RoutesRepo routesRepo) {
 
         this.companionRepo = companionRepo;
         this.companionSpotRepo = companionSpotRepo;
         this.companionStampRepo = companionStampRepo;
         this.insertImageRepo = insertImageRepo;
         this.transportationRepo = transportationRepo;
+        this.routesRepo = routesRepo;
     }
 
 
     //追加メゾット一覧
     //Companion Table
-    public boolean createCompanion(Companion companion) {
+    public Long createCompanion(Companion companion) {
         try{
-            companionRepo.save(companion);
-            return true;
+            Companion c = companionRepo.save(companion);
+            return c.getCompanionId();
         }catch(Exception e){
-            return false;
+            return null;
         }
     }
 
@@ -84,6 +88,16 @@ public class dbService {
     public boolean createTransportation(Transportation transportation) {
         try{
             transportationRepo.save(transportation);
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
+
+    //Transportation Table
+    public boolean createRoutes(Routes routes){
+        try{
+            routesRepo.save(routes);
             return true;
         }catch(Exception e){
             return false;
@@ -166,6 +180,11 @@ public class dbService {
     //Transportation table
     public List<Transportation> readTransportations(Long companionId) {
         return transportationRepo.findByCompanion_CompanionId(companionId);
+    }
+
+    //Routes table
+    public List<Routes> readRoutes(Long companionId) {
+        return routesRepo.findByCompanion_CompanionId(companionId);
     }
 
     //更新メゾット一覧(引数はcompanion_id)
