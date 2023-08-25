@@ -73,6 +73,35 @@
 			<version>1.57.2</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.google.maps/google-maps-routing -->
+		<dependency>
+			<groupId>com.google.maps</groupId>
+			<artifactId>google-maps-routing</artifactId>
+			<version>1.8.0</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.google.maps.api.grpc/proto-google-maps-routing-v2 -->
+		<dependency>
+			<groupId>com.google.maps.api.grpc</groupId>
+			<artifactId>proto-google-maps-routing-v2</artifactId>
+			<version>1.8.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.grpc/grpc-protobuf -->
+		<dependency>
+			<groupId>io.grpc</groupId>
+			<artifactId>grpc-protobuf</artifactId>
+			<version>1.57.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.grpc/grpc-netty -->
+		<dependency>
+			<groupId>io.grpc</groupId>
+			<artifactId>grpc-netty</artifactId>
+			<version>1.57.2</version>
+		</dependency>
+
+
 
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>

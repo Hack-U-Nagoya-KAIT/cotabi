@@ -1,27 +1,21 @@
 package com.example.app.model;
 
 public class RouteResponse {
-    private String distance;
-    private String duration;
-    private String polyline;
-
+    private int distance;
+    private int duration;
+    
     // getters, setters
-    public String getDistance() {
+    public int getDistance() {
         return distance;
     }
-    public void setDistance(String distance) {
+    public void setDistance(int distance) {
         this.distance = distance;
     }
-    public String getDuration() {
+    public int getDuration() {
         return duration;
     }
-    public void setDuration(String duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
-    public String getPolyline() {
-        return polyline;
-    }
-    public void setPolyline(String polyline) {
-        this.polyline = polyline;
-    }
+
 }
