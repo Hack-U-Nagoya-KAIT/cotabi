@@ -161,11 +161,14 @@ const SearchScreen = ({ navigation, route }) => {
         </ScrollView>
 
       </View>
+      <View style={{alignItems: 'flex-end'}}>
+      <Text style={{fontSize: 10}}>Web Services by Yahoo! JAPAN（https://developer.yahoo.co.jp/sitemap/）</Text>
+      </View>
       <View style={[{ flex: 1 }, { alignSelf: 'stretch' }]}>
         <TouchableOpacity title="しおりを保存" style={[styles.primaryButtonLayout, styles.buttonShadow]}
           onPress={() => {
             handleSavePlan(); // handleSavePlan関数を呼び出す
-            navigation.navigate('Current'); // 'Current' 画面に遷移
+            navigation.navigate('Current',{id,styles}); // 'Current' 画面に遷移
           }}>
           <LinearGradient colors={['#022534', '#08546C', '#A0BACC']}
             start={{ x: 0.0, y: 0.5 }}

@@ -1,7 +1,7 @@
+import MaskedView from '@react-native-masked-view/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import MaskedView from '@react-native-masked-view/masked-view';
 
 const UserScreen = ({ navigation }) => {
   useEffect(() => {
@@ -38,7 +38,7 @@ const UserScreen = ({ navigation }) => {
       <TouchableOpacity 
         style={[styles.secondaryButtonLayout, styles.buttonShadow]}
         onPress={() => {
-          navigation.navigate('Current');
+          //navigation.navigate('Current');
         }}
       >
         <LinearGradient
