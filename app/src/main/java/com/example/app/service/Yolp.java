@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import com.example.app.model.ResponseBody;
+// import com.example.app.model.ResponseBody;
 import com.example.app.model.YolpData;
 
 public class Yolp {
@@ -78,7 +78,7 @@ public class Yolp {
                 String response6Body = response_6.getBody();
                 String response7Body = response_7.getBody();
                 
-                ResponseBody responseBody = new ResponseBody(response1Body, response2Body, response3Body, response4Body, response5Body, response6Body,response7Body);
+                // ResponseBody responseBody = new ResponseBody(response1Body, response2Body, response3Body, response4Body, response5Body, response6Body,response7Body);
                 System.out.println(response1Body);
                 System.out.println(response2Body);
                 System.out.println(response3Body);

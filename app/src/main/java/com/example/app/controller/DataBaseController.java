@@ -15,6 +15,7 @@ import com.example.app.db_module.tables.Companion;
 import com.example.app.db_module.tables.CompanionSpot;
 import com.example.app.db_module.tables.CompanionStamp;
 import com.example.app.db_module.tables.InsertImage;
+import com.example.app.db_module.tables.Routes;
 import com.example.app.db_module.tables.Transportation;
 
 
@@ -32,7 +33,7 @@ public class DataBaseController {
     //CREATE NEW DATA FOR Companion TABLE
     //戻り値 boolean型true/false
     @PostMapping("/create/comp")
-    public boolean createcomp(@RequestBody Companion companion) {
+    public Long createcomp(@RequestBody Companion companion) {
         return service.createCompanion(companion);
     }
 
@@ -63,6 +64,13 @@ public class DataBaseController {
     @PostMapping("/create/trans")
     public boolean createTrans(@RequestBody Transportation transportation) {
         return service.createTransportation(transportation);
+    }
+
+    //CREATE NEW DATA FOR Routes TABLE
+    //戻り値 boolean型true/false
+    @PostMapping("/create/toutes")
+    public boolean createRoutes(@RequestBody Routes routes) {
+        return service.createRoutes(routes);
     }
 
 
@@ -99,5 +107,12 @@ public class DataBaseController {
     @GetMapping("/read/trans/{companionId}")
     public List<Transportation> findTransportationById(@PathVariable Long companion_id) {
         return service.readTransportations(companion_id);
+    }
+
+    //READ Routes TABLE DATA FROM FOREIGN KEY
+    //戻り値 List<Companion>型
+    @GetMapping("/read/routes/{companionId}")
+    public List<Routes> findRoutesById(@PathVariable Long companion_id) {
+        return service.readRoutes(companion_id);
     }
 }

@@ -45,12 +45,12 @@ public class dbService {
 
     //追加メゾット一覧
     //Companion Table
-    public boolean createCompanion(Companion companion) {
+    public Long createCompanion(Companion companion) {
         try{
-            companionRepo.save(companion);
-            return true;
+            Companion c = companionRepo.save(companion);
+            return c.getCompanionId();
         }catch(Exception e){
-            return false;
+            return null;
         }
     }
 
