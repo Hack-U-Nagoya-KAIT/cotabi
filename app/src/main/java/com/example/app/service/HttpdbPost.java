@@ -54,7 +54,7 @@ public class HttpdbPost {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         String requestBody = "{\"companion\":{\"companionId\":\"" + id + "\"},\"spotLon\":\"" + lon
-                + "\",\"spotLat\":\"" + lat + "\",\"spotName\":\""+name+"\"}";
+                + "\",\"spotLat\":\"" + lat + "\",\"spotName\":\""+name+"\",\"spotName\":\""+address+"\"}";
 
         ResponseEntity<String> response = restTemplate.postForEntity(url, new HttpEntity<>(requestBody, headers),
                 String.class);
