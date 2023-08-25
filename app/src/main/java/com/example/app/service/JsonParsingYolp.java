@@ -24,6 +24,7 @@ public class JsonParsingYolp {
 
                         String name = featureNode.get("Name").asText();
                         String tag = propertyNode.get("Genre").get(0).get("Name").asText();
+                        String address = propertyNode.get("Address").asText();
 
                         String coordinates = geometryNode.get("Coordinates").asText();
 
@@ -33,7 +34,7 @@ public class JsonParsingYolp {
                         double lon = Double.parseDouble(coordParts[0]);
 
                         // YolpDataオブジェクトを作成してリストに追加
-                        YolpData data = new YolpData(name, lat, lon, tag);
+                        YolpData data = new YolpData(name, lat, lon, tag, address);
                         dataList.add(data);
                     }
                 }
@@ -47,6 +48,7 @@ public class JsonParsingYolp {
             System.out.println("lat: " + data.getLat());
             System.out.println("lon: " + data.getLon());
             System.out.println("tag: " + data.getTag());
+            System.out.println("address: " + data.getAddress());
         }
         return dataList;
     }
