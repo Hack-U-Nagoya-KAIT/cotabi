@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.app.SetDistance.SetDistance;
 import com.example.app.model.LocationRequest;
 import com.example.app.service.Yolp;
+
 @RestController
 public class LocationController {
     @RequestMapping("/api")
