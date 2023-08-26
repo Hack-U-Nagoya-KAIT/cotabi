@@ -11,7 +11,7 @@ import com.example.app.model.YolpData;
 public class Yolp {
 
         // @Value("${yolp.api.key}")
-        private static String apiKey;
+        private static String apiKey = "";
 
         // public Yolp(@Value("${yolp.api.key}") String apiKey) {
         //         // Yolp.apiKey = apiKey;

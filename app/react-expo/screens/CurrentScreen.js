@@ -11,11 +11,11 @@ const CurrentScreen = ({route}) => {
   const [currentTime, setCurrentTime] = useState('');
   const [arrivalTime, setArrivalTime] = useState('');
 
-  let API_URL_COMP = "https://68df-182-21-98-168.ngrok-free.app/api/db/read/comp/" + id;
+  let API_URL_COMP = "https://3a8d-150-249-244-121.ngrok-free.app/api/db/read/comp/" + id;
   
-  let API_URL_SPOT = "https://68df-182-21-98-168.ngrok-free.app/api/db/read/spot/" + id;
+  let API_URL_SPOT = "https://3a8d-150-249-244-121.ngrok-free.app/api/db/read/spot/" + id;
 
-  let API_URL_ROUTE = "https://68df-182-21-98-168.ngrok-free.app/api/db/read/routes/" + id;
+  let API_URL_ROUTE = "https://3a8d-150-249-244-121.ngrok-free.app/api/db/read/routes/" + id;
 
   useEffect(() => {
     const fetchData = async () => {
