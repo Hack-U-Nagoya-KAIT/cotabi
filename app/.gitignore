@@ -36,3 +36,7 @@ myadmin_pass.yml
 .env
 react-expo/node_modules
 react-expo/.expo
+target
+phpmyadmin/sessions
+package-lock.json
+Key.yml
