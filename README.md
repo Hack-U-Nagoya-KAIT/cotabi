@@ -1,7 +1,7 @@
 # *ポートフォリオ用　自己分析支援ツール"MOGRA"* 
 
 
-![MOGRA title](images/logo.png)
+![MOGRA title](app/react-expo/assets/logo.png)
 
 # 概要
 就活に悩む大学生をターゲットとして、モチベーショングラフの作成支援によって
