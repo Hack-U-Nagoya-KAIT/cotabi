@@ -2,6 +2,7 @@
 
 
 ![cotabi title](app/react-expo/assets/logo.png)
+![cotabi demo](cotabi-demo.gif)
 
 # 概要
 使える時間、予算、旅のコンセプトを入力して検索ボタンをたっぷすると条件に合致した目的地を動で選び、目的地の住所や移動にかかる時間、交通費などが乗った旅のしおりを自動で作成する。
